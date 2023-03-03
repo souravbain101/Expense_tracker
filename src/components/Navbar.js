@@ -8,19 +8,22 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
-import Sanupic from './images/sanu.jpg'
+import Sanupic from '../images/sanu.jpg';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { Paper, Switch } from '@mui/material';
+import { useState } from "react";
+import Icon from '../images/sanu.jpg';
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = ['Home', 'Track expences', 'Show expences'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -35,30 +38,21 @@ function ResponsiveAppBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
+  const [modeio, setmodeio] = useState(false);
+  const theme = createTheme({
+    palette: {
+      mode:modeio?'dark':'light',
+    },
+  });
   return (
+    <ThemeProvider theme={theme}>
+    <Paper style={{height:"100vh"}}>
+      <CssBaseline />
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
-
+          {/* will fix icon in next commit */}
+            {/* <img  src={Icon}/> */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -132,6 +126,7 @@ function ResponsiveAppBar() {
                 <Avatar alt="Remy Sharp" src={Sanupic} />
               </IconButton>
             </Tooltip>
+            <Switch  checked={modeio} onChange={()=>setmodeio(!modeio)}/>
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
@@ -158,6 +153,8 @@ function ResponsiveAppBar() {
         </Toolbar>
       </Container>
     </AppBar>
+    </Paper>
+    </ThemeProvider>
   );
 }
 export default ResponsiveAppBar;
