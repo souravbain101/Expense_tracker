@@ -15,13 +15,14 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { Paper, Switch } from '@mui/material';
+import { Switch } from '@mui/material';
 import { useState } from "react";
-import Icon from '../images/sanu.jpg';
+// import Icon from '../images/sanu.jpg';
+import { Link } from 'react-router-dom';
 
 const pages = ['Home', 'Track expences', 'Show expences'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-function ResponsiveAppBar() {
+function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const handleOpenNavMenu = (event) => {
@@ -46,9 +47,8 @@ function ResponsiveAppBar() {
   });
   return (
     <ThemeProvider theme={theme}>
-    <Paper style={{height:"100vh"}}>
       <CssBaseline />
-    <AppBar position="static">
+    <AppBar position="static" sx={{ bgcolor: !modeio ? "#c5aa6a":"black" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* will fix icon in next commit */}
@@ -84,7 +84,11 @@ function ResponsiveAppBar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography textAlign="center">
+
+                  <Link style={{textDecoration:"none", color:"white"}} to={`/${page}`}>{page}</Link>
+
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -115,7 +119,8 @@ function ResponsiveAppBar() {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                <Link style={{textDecoration:"none", color:"white"}} to={`/${page}`}>{page}</Link>
+                {/* {page} */}
               </Button>
             ))}
           </Box>
@@ -153,8 +158,7 @@ function ResponsiveAppBar() {
         </Toolbar>
       </Container>
     </AppBar>
-    </Paper>
     </ThemeProvider>
   );
 }
-export default ResponsiveAppBar;
+export default Navbar;
