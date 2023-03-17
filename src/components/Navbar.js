@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './Navbar.css';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -48,7 +49,7 @@ function Navbar() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-    <AppBar position="static" sx={{ bgcolor: !modeio ? "#c5aa6a":"black" }}>
+    <AppBar position="static" sx={{ bgcolor: !modeio ? "orange":"#111111" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* will fix icon in next commit */}
