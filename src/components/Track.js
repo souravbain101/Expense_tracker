@@ -1,9 +1,10 @@
 import React from 'react'
+import AddRecord from './AddRecord'
 
 function Track() {
   return (
     <div>
-    <p>i am Track</p>
+    <AddRecord/>
     </div>
   )
 }
