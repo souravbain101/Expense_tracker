@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate } from "react-router-dom";
 import './Navbar.css';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -46,6 +47,7 @@ function Navbar() {
       mode:modeio?'dark':'light',
     },
   });
+  const navigate = useNavigate();
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -127,6 +129,7 @@ function Navbar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
+          <Button style={{backgroundColor: "#00c853"}} sx={{ mr: 3 }} variant="contained" color="primary" onClick={()=>navigate('create')}>create account</Button>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src={Sanupic} />
