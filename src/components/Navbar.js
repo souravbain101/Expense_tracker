@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate } from "react-router-dom";
 import './Navbar.css';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -17,15 +18,25 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Switch } from '@mui/material';
-import { useState } from "react";
+import { useState,useEffect } from "react";
 // import Icon from '../images/sanu.jpg';
 import { Link } from 'react-router-dom';
 
 const pages = ['Home', 'Track expences', 'Show expences'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 function Navbar() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  // use effect starts
+  useEffect(() => {
+   if(window.screen.width<=768){
+    if(!pages.includes('create account')){
+      pages.push('create account')
+    }
+   }
+  //  console.log("hi boys");
+  }, [])
+  // use effect ends
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -46,6 +57,7 @@ function Navbar() {
       mode:modeio?'dark':'light',
     },
   });
+  const navigate = useNavigate();
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -127,6 +139,7 @@ function Navbar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
+          {(window.screen.width>768)?<Button style={{backgroundColor: "#00c853"}} sx={{ mr: 3 }} variant="contained" color="primary" onClick={()=>navigate('create')}>create account</Button>:<></>}
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src={Sanupic} />
