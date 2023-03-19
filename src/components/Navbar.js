@@ -132,7 +132,7 @@ function Navbar() {
                 <Avatar alt="Remy Sharp" src={Sanupic} />
               </IconButton>
             </Tooltip>
-            <Switch  checked={modeio} onChange={()=>setmodeio(!modeio)}/>
+            {/* <Switch  checked={modeio} onChange={()=>setmodeio(!modeio)}/> */}
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
