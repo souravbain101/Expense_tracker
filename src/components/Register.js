@@ -5,6 +5,8 @@ import './Register.css';
 import axios from './Api/axios'
 import { Link } from "react-router-dom";
 
+
+
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const REGISTER_URL = '/register';
@@ -84,6 +86,7 @@ const Register = () => {
     }
 
     return (
+       
         <div className="container">
             {success ? (
                 <section>
@@ -97,11 +100,11 @@ const Register = () => {
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1>Sign Up</h1>
                     <form onSubmit={handleSubmit}>
-                        <label htmlFor="username">
+                        <div className="inputSignup" htmlFor="username">
                             Username:
                             <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
                             <FontAwesomeIcon icon={faTimes} className={validName || !user ? "hide" : "invalid"} />
-                        </label>
+                        </div>
                         <input
                             type="text"
                             id="username"
@@ -123,11 +126,11 @@ const Register = () => {
                         </p>
 
 
-                        <label htmlFor="password">
+                        <div className="inputSignup" htmlFor="password">
                             Password:
                             <FontAwesomeIcon icon={faCheck} className={validPwd ? "valid" : "hide"} />
                             <FontAwesomeIcon icon={faTimes} className={validPwd || !pwd ? "hide" : "invalid"} />
-                        </label>
+                        </div>
                         <input
                             type="password"
                             id="password"
@@ -147,11 +150,11 @@ const Register = () => {
                         </p>
 
 
-                        <label htmlFor="confirm_pwd">
+                        <div className="inputSignup" htmlFor="confirm_pwd">
                             Confirm Password:
                             <FontAwesomeIcon icon={faCheck} className={validMatch && matchPwd ? "valid" : "hide"} />
                             <FontAwesomeIcon icon={faTimes} className={validMatch || !matchPwd ? "hide" : "invalid"} />
-                        </label>
+                        </div>
                         <input
                             type="password"
                             id="confirm_pwd"
@@ -168,7 +171,7 @@ const Register = () => {
                             Must match the first password input field.
                         </p>
 
-                        <button disabled={!validName || !validPwd || !validMatch ? true : false}>Sign Up</button>
+                        <button className="signup" disabled={!validName || !validPwd || !validMatch ? true : false}>Sign Up</button>
                     </form>
                     <p>
                         Already registered?<br />
@@ -180,6 +183,8 @@ const Register = () => {
                 </section>
             )}
         </div>
+        
+        
     )
 }
 
