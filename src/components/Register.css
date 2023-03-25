@@ -5,12 +5,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-.container{
+    
+} 
+ .container{
     height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 section {
     width: 100%;
@@ -19,6 +21,11 @@ section {
     flex-direction: column;
     padding: 1rem;
     background-color: #FFA500;
+    box-shadow: 4px 4px 2px #6d6d6c;
+    border-radius: 8px;
+}
+section h1{
+    text-align: center;
 }
 
 form {
@@ -43,10 +50,10 @@ textarea {
   border-radius: 0.5rem;
 }
 
-label,
-button {
-  margin-top: 1rem;
-}
+div.inputSignup,
+.signup {
+  margin-top: 1.2rem;
+} 
 
 button {
   padding: 0.5rem;

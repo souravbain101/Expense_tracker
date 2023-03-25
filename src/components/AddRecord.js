@@ -48,7 +48,7 @@ export default function AddRecord() {
         <Card style={{ width: '50%', margin: "10% auto" }} className="responsive" >
           <CardContent style={{ textAlign: 'center' }}>
 
-            <h2 style={{ color: "#FFA500"  }}>Add Expenses</h2>
+            <h2 className='addexp' style={{ color: "#FFA500"  }}>Add Expenses</h2>
 
 
             <Grid container spacing={2}>

@@ -17,14 +17,18 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { Switch } from '@mui/material';
+
 import { useState,useEffect } from "react";
 // import Icon from '../images/sanu.jpg';
 import { Link } from 'react-router-dom';
+import Modal from './Modal'
+
 
 const pages = ['Home', 'Track expences', 'Show expences'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 function Navbar() {
+
+
   // use effect starts
   useEffect(() => {
    if(window.screen.width<=768){
@@ -58,6 +62,8 @@ function Navbar() {
     },
   });
   const navigate = useNavigate();
+
+  
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -138,8 +144,10 @@ function Navbar() {
             ))}
           </Box>
 
+                <Modal/>
+
           <Box sx={{ flexGrow: 0 }}>
-          {(window.screen.width>768)?<Button style={{backgroundColor: "#00c853"}} sx={{ mr: 3 }} variant="contained" color="primary" onClick={()=>navigate('create')}>create account</Button>:<></>}
+          
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src={Sanupic} />
@@ -170,6 +178,7 @@ function Navbar() {
             </Menu>
           </Box>
         </Toolbar>
+        
       </Container>
     </AppBar>
     </ThemeProvider>
