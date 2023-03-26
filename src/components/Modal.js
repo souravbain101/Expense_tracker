@@ -26,9 +26,8 @@ export default function TransitionsModal() {
 
   return (
     <div>
-        <Button onClick={handleOpen} style={{backgroundColor: "#FFA500"}} sx={{ mr: 3 }} variant="contained" color="primary">Create Account </Button>
+        <Button onClick={handleOpen} style={{backgroundColor: "#00bfa5"}} sx={{ mr: 3 }} variant="contained" color="primary">Create Account </Button>
       <Modal
-        
         open={open}
         onClose={handleClose}
         closeAfterTransition
