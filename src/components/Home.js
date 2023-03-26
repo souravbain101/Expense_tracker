@@ -1,4 +1,4 @@
-import { Box,  Typography, useTheme } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import { tokens } from "./homefiles/theme";
 import Header from "./homefiles/StatBox";
 import StatBox from "./homefiles/StatBox";
@@ -11,18 +11,20 @@ const Home = () => {
   const colors = tokens(theme.palette.mode);
 
   return (
-    <Box m="20px">
+    <Box m="8px" sx={{ padding: 2, marginRight: 0 }}>
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="Home" subtitle="Welcome to your Home page" />
+        <Typography fontWeight={600} fontSize={24}sx={{color:colors.orangeAccent[500]}}
+        >Welcome To Your Home</Typography>
+        
       </Box>
 
       {/* GRID & CHARTS */}
       <Box
         display="grid"
-        gridTemplateColumns="repeat(12, 1fr)"
-        gridAutoRows="140px"
-        gap="20px"
+        gridTemplateColumns="repeat(9, 1fr)"
+        gridAutoRows="135px"
+        gap="18px"
       >
         {/* ROW 1 */}
 
@@ -33,6 +35,7 @@ const Home = () => {
           display="flex"
           alignItems="center"
           justifyContent="center"
+
         >
           <StatBox
             title="32,441"
@@ -41,12 +44,12 @@ const Home = () => {
             increase="+5%"
             icon={
               <EqualizerIcon
-                sx={{ color: colors.orangeAccent[600], fontSize: "26px" }}
+                sx={{ color: colors.orangeAccent[600], fontSize: "20px" }}
               />
             }
           />
         </Box>
-        
+
         <Box
           gridColumn="span 3"
           backgroundColor={colors.primary[400]}
@@ -61,7 +64,7 @@ const Home = () => {
             increase="+21%"
             icon={
               < AttachMoneyIcon
-                sx={{ color: colors.orangeAccent[600], fontSize: "26px" }}
+                sx={{ color: colors.orangeAccent[600], fontSize: "20px" }}
               />
             }
           />
@@ -82,7 +85,7 @@ const Home = () => {
             increase="+21%"
             icon={
               < AddToPhotosIcon
-                sx={{ color: colors.orangeAccent[600], fontSize: "26px" }}
+                sx={{ color: colors.orangeAccent[600], fontSize: "20px" }}
               />
             }
           />
@@ -102,7 +105,7 @@ const Home = () => {
             justifyContent="space-between"
             alignItems="center"
           >
-            <Box>
+            <Box >
               <Typography
                 variant="h5"
                 fontWeight="600"
@@ -111,7 +114,7 @@ const Home = () => {
                 Last Month
               </Typography>
               <Typography
-                variant="h3"
+                variant="h5"
                 fontWeight="bold"
                 color={colors.orangeAccent[500]}
               >
@@ -119,7 +122,7 @@ const Home = () => {
               </Typography>
             </Box>
           </Box>
-          <Box height="250px" m="-20px 0 0 0">
+          <Box height="210px" m="-1px 0 0 0">
             <LineChart isHome={true} />
           </Box>
         </Box>
@@ -128,8 +131,9 @@ const Home = () => {
 
         {/*Transation*/}
         <Box
-          gridColumn="span 4"
-          gridRow="span 2"
+          margin={1}
+          gridColumn="span 7"
+          gridRow="span 4"
           backgroundColor={colors.primary[400]}
           overflow="auto"
         >
@@ -144,7 +148,7 @@ const Home = () => {
             <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
               Recent Transactions
             </Typography>
-            </Box>
+          </Box>
         </Box>
       </Box>
     </Box>

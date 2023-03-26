@@ -53,11 +53,11 @@ const data = [
       return (
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
-            width={500}
-            height={300}
+            width={700}
+            height={200}
             data={data}
             margin={{
-              top: 5,
+              top: 6,
               right: 30,
               left: 20,
               bottom: 5,
