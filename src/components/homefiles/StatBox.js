@@ -7,14 +7,30 @@ const StatBox = ({ title, subtitle, icon, progress, increase }) => {
   const colors = tokens(theme.palette.mode);
 
   return (
-    <Box width="100%" m="0 30px">
-      <Box display="flex" justifyContent="space-between">
-        <Box>
+    <Box width="100%" m="0 40px">
+      <Box sx={{
+        justifyContent: 'space-between',
+        width:{
+        xs: 100,
+        sm: 300,
+        md: 400,
+        lg: 500,
+        xl: 600,},
+      }}>
+        <Box sx={{
+          width: {justifyContent:'space-evenly',
+            xs: 100,
+            sm: 200,
+            md: 300,
+            lg: 400,
+            xl: 500,
+          },
+        }}>
           {icon}
           <Typography
-            variant="h4"
+            variant="h5"
             fontWeight="bold"
-            sx={{ color: colors.orange}}
+            sx={{ color: colors.orange,fontSize:24 }}
           >
             {title}
           </Typography>
@@ -24,11 +40,11 @@ const StatBox = ({ title, subtitle, icon, progress, increase }) => {
         </Box>
       </Box>
       <Box display="flex" justifyContent="space-between" mt="2px">
-        <Typography variant="h5" sx={{ color: colors.orangeAccent[500] }}>
+        <Typography variant="h6" sx={{ color: colors.orangeAccent[500] }}>
           {subtitle}
         </Typography>
         <Typography
-          variant="h5"
+          variant="h6"
           fontStyle="italic"
           sx={{ color: colors.orangeAccent[600] }}
         >
