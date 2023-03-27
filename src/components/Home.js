@@ -1,6 +1,6 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import { tokens } from "./homefiles/theme";
-import Header from "./homefiles/StatBox";
+// import Header from "./homefiles/StatBox";
 import StatBox from "./homefiles/StatBox";
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
@@ -129,7 +129,7 @@ const Home = () => {
 
 
 
-        {/Transation/}
+        {/* {Transation} */}
         <Box
           margin={1}
           gridColumn="span 7"
