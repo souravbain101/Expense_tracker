@@ -6,6 +6,7 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 import Register from './Register';
+import './Modal.css'
 
 const style = {
   position: 'absolute',
@@ -16,7 +17,7 @@ const style = {
   bgcolor: 'background.paper',
   border: '2px solid #FFA500',
   boxShadow: 24,
-  p: 4,
+  p: 2,
 };
 
 export default function TransitionsModal() {
@@ -39,7 +40,7 @@ export default function TransitionsModal() {
         }}
       >
         <Fade in={open}>
-          <Box sx={style}>
+          <Box className ='modal' sx={style}>
            <Register/>
           </Box>
         </Fade>
