@@ -100,7 +100,7 @@ export default function AddRecord() {
 
 
               <Grid item xs={12} sm={6}   >
-                <TextField color="primary" type="number" name='amount' variant="outlined" fullWidth required onChange={handlechange}/>
+                <TextField color="primary" type="number" label='Amount' name='amount' variant="outlined" fullWidth required onChange={handlechange}/>
               </Grid>
 
               <Grid item xs={12} sx={{ mt: '15px' }} >
