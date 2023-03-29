@@ -1,0 +1,11 @@
+@media screen and (max-width:599px){
+    .reshome{
+        margin: 10px 0 0 0  !important;
+        
+    }
+ }
+.title{
+    
+    display: flex;
+    justify-content: center;
+}
