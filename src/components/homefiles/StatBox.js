@@ -7,7 +7,7 @@ const StatBox = ({ title, subtitle, icon, progress, increase }) => {
   const colors = tokens(theme.palette.mode);
 
   return (
-    <Box width="100%" m="0 40px">
+    <Box width="100%" m="0 .8em">
       <Box sx={{
         justifyContent: 'space-between',
         width:{
@@ -18,7 +18,8 @@ const StatBox = ({ title, subtitle, icon, progress, increase }) => {
         xl: 600,},
       }}>
         <Box sx={{
-          width: {justifyContent:'space-evenly',
+          width: {
+            justifyContent:'space-evenly',
             xs: 100,
             sm: 200,
             md: 300,
@@ -30,16 +31,16 @@ const StatBox = ({ title, subtitle, icon, progress, increase }) => {
           <Typography
             variant="h5"
             fontWeight="bold"
-            sx={{ color: colors.orange,fontSize:24 }}
+            sx={{ color: colors.orange,fontSize:24,margin:'5px' }}
           >
             {title}
           </Typography>
         </Box>
-        <Box>
+        <Box mt="5px">
           <ProgressCircle progress={progress} />
         </Box>
       </Box>
-      <Box display="flex" justifyContent="space-between" mt="2px">
+      <Box display="flex" justifyContent="space-between" mr="2em">
         <Typography variant="h6" sx={{ color: colors.orangeAccent[500] }}>
           {subtitle}
         </Typography>

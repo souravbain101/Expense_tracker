@@ -1,3 +1,4 @@
+import { CardContent,Card } from '@mui/material';
 import React, { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
@@ -51,6 +52,7 @@ const data = [
   
     render() {
       return (
+       
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
             width={700}
@@ -72,6 +74,7 @@ const data = [
             <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
           </LineChart>
         </ResponsiveContainer>
+        
       );
     }
   }

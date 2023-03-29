@@ -1,4 +1,4 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, CardContent,Card, Typography, useTheme } from "@mui/material";
 import { tokens } from "./homefiles/theme";
 // import Header from "./homefiles/StatBox";
 import StatBox from "./homefiles/StatBox";
@@ -11,6 +11,7 @@ const Home = () => {
   const colors = tokens(theme.palette.mode);
 
   return (
+    
     <Box m="8px" sx={{ padding: 2, marginRight: 0 }}>
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
@@ -28,7 +29,7 @@ const Home = () => {
       >
         {/* ROW 1 */}
 
-
+      
         <Box
           gridColumn="span 3"
           backgroundColor={colors.primary[400]}
@@ -49,6 +50,7 @@ const Home = () => {
             }
           />
         </Box>
+        
 
         <Box
           gridColumn="span 3"
