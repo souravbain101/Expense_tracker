@@ -1,9 +1,9 @@
-import StatBox from "./homefiles/StatBox";
-import LineChart from "./homefiles/LineChart";
+import StatBox from "./StatBox";
+import LineChart from "./LineChart";
 // import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
 // import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
-import { tokens } from "./homefiles/theme";
+import { tokens } from "./theme";
 import { CardContent,Card, Grid, useTheme } from "@mui/material";
 import {Typography,Box} from "@mui/material";
 import React from 'react'

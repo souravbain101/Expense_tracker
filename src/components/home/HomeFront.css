@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@1,200&family=Poppins:wght@400;600&display=swap');
+.cont{
+    width: 100vh;
+    height: 100vh;
+}
+#header h1{
+    margin: 0 0 10px 0;
+    padding: 20px;
+    
+    text-align: center;
+    font-size: 48px;
+    font-weight: 700;
+    color:orange;
+}
+
+#header .btn-sign-up{
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-left: 300px;
+    padding: 10px 40px;
+    border-radius: 40px;
+    transition: 0.4s;
+    color: rgb(40, 124, 96);
+    border: 2px solid rgb(145, 205, 229);
+    text-decoration: none;
+}
+#header .btn-sign-in{
+    font-weight: 600;
+    font-size: 16px;
+    margin-left: 300px;
+    text-align: center;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 10px 50px;
+    border-radius: 40px;
+    transition: 0.4s;
+    color: rgb(40, 124, 96);
+    border: 2px solid rgb(145, 205, 229);
+    text-decoration: none;
+}
+
+#header .btn-sign-up:hover{
+    background: -webkit-linear-gradient(right, #c59f08, #e5b107, #9e315f, #d65344, #b37b1b);
+    color: #fff;
+}
+#header .btn-sign-in:hover{
+    background: -webkit-linear-gradient(right, #c7a109, #e5b107, #9e315f, #d65344, #b37b1b);
+    color: #fff;
+}
+.header-img{
+    text-align: right;
+}
+#header .animated{
+    animation: up-down 2s ease-in-out infinite alternate-reverse both;
+}
+
+@keyframes up-down {
+    0%{
+        transform: translateY(8px);
+    }
+    100%{
+        transform: translateY(-8px);
+    }
+}
