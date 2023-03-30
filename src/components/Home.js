@@ -1,4 +1,4 @@
-import { Box, CardContent,Card, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import { tokens } from "./homefiles/theme";
 // import Header from "./homefiles/StatBox";
 import StatBox from "./homefiles/StatBox";

@@ -1,8 +1,8 @@
 import StatBox from "./homefiles/StatBox";
 import LineChart from "./homefiles/LineChart";
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+// import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
-import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
+// import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
 import { tokens } from "./homefiles/theme";
 import { CardContent,Card, Grid, useTheme } from "@mui/material";
 import {Typography,Box} from "@mui/material";
