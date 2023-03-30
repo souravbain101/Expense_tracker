@@ -1,12 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
-
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    
-} 
  .container{
     height: 90vh;
     display: flex;
@@ -14,7 +6,7 @@
     align-items: center;
     
 }
-section {
+.first {
     width: 100%;
     max-width: 420px;
     min-height: 400px;
@@ -24,7 +16,7 @@ section {
     box-shadow: 4px 4px 2px #6d6d6c;
     border-radius: 8px;
 }
-section h1{
+.firsth1{
     text-align: center;
 }
 
@@ -34,10 +26,6 @@ form {
     justify-content: space-evenly;
     flex-grow: 1;
     padding-bottom: 1rem;
-}
-
-a, a:visited {
-    color: #fff;
 }
 
 input[type="text"],
@@ -50,8 +38,7 @@ textarea {
   border-radius: 0.5rem;
 }
 
-div.inputSignup,
-.signup {
+.inputSignup,.signup {
   margin-top: 1.2rem;
 } 
 

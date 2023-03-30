@@ -89,16 +89,16 @@ const Register = () => {
        
         <div className="container">
             {success ? (
-                <section>
+                <section className="first">
                     <h1>Success!</h1>
                     <p>
                         <Link to="/signin">Sign In</Link>
                     </p>
                 </section>
             ) : (
-                <section>
+                <section className="first">
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-                    <h1>Sign Up</h1>
+                    <h1 className="firsth1">Sign Up</h1>
                     <form onSubmit={handleSubmit}>
                         <div className="inputSignup" htmlFor="username">
                             Username:
