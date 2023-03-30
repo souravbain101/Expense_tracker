@@ -1,10 +1,10 @@
 import React from 'react'
-import Home from './components/Home';
-import Newhome from './components/Newhome';
-import Navbar from './components/Navbar'
-import Show from './components/Show';
-import Track from './components/Track';
-import Modal from './components/Modal';
+import Home from './components/home/HomeFront';
+import Newhome from './components/newhomefiles/Newhome';
+import Navbar from './components/navbar/Navbar'
+import Show from './components/showfiles/Show';
+import Track from './components/addexpences/Track';
+import Modal from './components/signup/Modal';
 import {Routes , Route} from 'react-router-dom';
 
 function App() {

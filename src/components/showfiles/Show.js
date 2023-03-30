@@ -1,5 +1,5 @@
 import React from 'react'
-import Table from './showfiles/Table'
+import Table from './Table'
 import Box from '@mui/material/Box';
 
 function Show() {
