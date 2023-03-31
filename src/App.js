@@ -4,9 +4,11 @@ import Newhome from './components/newhomefiles/Newhome';
 import Navbar from './components/navbar/Navbar'
 import Show from './components/showfiles/Show';
 import Track from './components/addexpences/Track';
-import Modal from './components/signup/Modal';
+import Modal from './components/signup/Modal'
+
 import {Routes , Route} from 'react-router-dom';
 import Register from './components/signup/Register';
+
 
 function App() {
   return (

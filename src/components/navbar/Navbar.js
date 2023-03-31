@@ -17,22 +17,22 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import Modal from "../signup/Modal";
+
 
 const pages = ["Home", "Track expences", "Show expences"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 function Navbar() {
   // use effect starts
-  useEffect(() => {
-    if (window.screen.width <= 768) {
-      if (!pages.includes("create account")) {
-        pages.push("create account");
-      }
-    }
-    //  console.log("hi boys");
-  }, []);
+  // useEffect(() => {
+  //   if (window.screen.width <= 768) {
+  //     if (!pages.includes("create account")) {
+  //       pages.push("create account");
+  //     }
+  //   }
+  //   //  console.log("hi boys");
+  // }, []);
   // use effect ends
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -125,7 +125,7 @@ function Navbar() {
                 textDecoration: "none",
               }}
             >
-              LOGO
+              Economizing
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {pages.map((page) => (
@@ -145,7 +145,7 @@ function Navbar() {
               ))}
             </Box>
             {/* <Modal /> */}
-            {window.screen.width > 768?<Modal />:<></>}
+            {/* {window.screen.width > 768?<Modal />:<></>} */}
 
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
