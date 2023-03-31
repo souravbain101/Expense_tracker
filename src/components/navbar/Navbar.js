@@ -21,7 +21,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 
-const pages = ["Home", "TrackExp", "ShowExp"];
+const pages = ["Home", "Track expences", "Show expences"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 function Navbar() {
   // use effect starts
