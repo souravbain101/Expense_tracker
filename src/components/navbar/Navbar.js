@@ -19,7 +19,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Modal from "../signup/Modal";
+import Modal from "../signup/Modal.js";
 
 const pages = ["Home", "Track expences", "Show expences"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
