@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@1,200&family=Poppins:wght@400;600&display=swap');
-/* .cont{
-    width: 100vh;
-    height: 100vh;
-}
-#header h1{
+.homeh1{
     margin: 0 0 10px 0;
     padding: 20px;
     
@@ -13,7 +9,7 @@
     color:orange;
 }
 
-#header .btn-sign-up{
+.btn-sign-up{
     font-weight: 600;
     font-size: 16px;
     letter-spacing: 1px;
@@ -26,7 +22,7 @@
     border: 2px solid rgb(145, 205, 229);
     text-decoration: none;
 }
-#header .btn-sign-in{
+.btn-sign-in{
     font-weight: 600;
     font-size: 16px;
     margin-left: 300px;
@@ -41,11 +37,11 @@
     text-decoration: none;
 }
 
-#header .btn-sign-up:hover{
+.btn-sign-up:hover{
     background: -webkit-linear-gradient(right, #c59f08, #e5b107, #9e315f, #d65344, #b37b1b);
     color: #fff;
 }
-#header .btn-sign-in:hover{
+.btn-sign-in:hover{
     background: -webkit-linear-gradient(right, #c7a109, #e5b107, #9e315f, #d65344, #b37b1b);
     color: #fff;
 }
@@ -59,7 +55,7 @@
 .homeimg{
     width: 80%;
 }
-.homeimg{
+#header .animated{
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
 }
 

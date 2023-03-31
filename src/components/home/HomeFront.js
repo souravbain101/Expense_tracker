@@ -7,39 +7,26 @@ import './HomeFront.css'
 const HomeFront = () => {
   
   return (
-    <div  >
-
-      
-      <Grid container spacing={2} style={{width:'90%',margin:'8% auto'}}  >
-     
-      <Grid item sm={6} >
-     <div style={{ width: 'fit-content',margin: 'auto'}}>
-      <h1 style={{color:'#FFA500'}} >Econimizing</h1>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. At, minima aliquam? Qui, quidem velit inventore aspernatur modi quaerat cumque. Expedita voluptates iste architecto quam sed? Aliquid totam unde corporis ut!</p>
-      
-      <div style={{margin:'2em 0 0 0',display:'flex'}} >
-  
-      <Modal/>
-      <Modal/>
-      
-      
-      </div>
-      </div>
-      </Grid>
-
-      <Grid item sm={6}>
-      
-        <img className='homeimg' src={web} alt='' />
-      
-      </Grid>
-    
-    
-      </Grid>
-
-
-      
-               
-      
+    <div className='cont'>
+      <section id="header" className='d-flex align-items-center'>
+        <div className='container-fluid nav-bg'>
+          <div className='row'>
+            <div className='col-10- mx-auto'>
+              <div className='row'>
+              <div className='col-md-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex justify-content-center flex-column'>
+                <h1 className='homeh1'>Econimizing</h1>
+              
+              <div className='mt-3'><Link to="/signup" className='btn-sign-up'>Sign Up</Link></div>
+              <div className='mt-3'> <Link to="/signin" className='btn-sign-in'>Sign In</Link></div>
+              </div>
+              <div className='col-lg-6 order-1 order-lg-2 header-img'>
+                <img src={web} className='img-fluid animated' alt='home img'/>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

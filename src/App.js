@@ -6,6 +6,7 @@ import Show from './components/showfiles/Show';
 import Track from './components/addexpences/Track';
 
 import {Routes , Route} from 'react-router-dom';
+import Register from './components/signup/Register';
 
 
 function App() {
@@ -15,8 +16,10 @@ function App() {
     <Routes>
     <Route path='/' element={<Home/>} />
       <Route path='/Home' element={<Newhome/>} />
-      <Route path='/TrackExp' element={<Track/>} />   
-      <Route path='/ShowExp' element={<Show/>} />   
+      <Route path='/Track expences' element={<Track/>} />
+      <Route path='/create account' element={<Modal/>} />
+      <Route path='/Show expences' element={<Show/>} />
+      <Route path='/signup' element={<Register/>} />
     </Routes>
     </>
   )
