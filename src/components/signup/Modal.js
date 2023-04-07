@@ -6,6 +6,8 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 import Register from './Register';
+import { FaSignInAlt } from "react-icons/fa";
+ import { AiOutlineClose } from "react-icons/ai";
 import './Modal.css'
 
 const style = {
@@ -14,9 +16,10 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: '40%',
-  bgcolor: 'background.paper',
+  bgcolor: 'transparent',
   border: '2px solid #FFA500',
   boxShadow: 24,
+  backdropFilter:'blur(8px)',
   p: 2,
 };
 
@@ -27,7 +30,7 @@ export default function TransitionsModal() {
 
   return (
     <div>
-        <Button onClick={handleOpen} style={{backgroundColor: "#00bfa5"}} sx={{ mr: 3 }} variant="contained" color="primary">Sign up</Button>
+        <Button className='secondary-button' onClick={handleOpen} style={{backgroundColor: "#00bfa5"}} sx={{ mr: 3 }} variant="contained" color="primary">Sign up<FaSignInAlt/></Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -38,9 +41,12 @@ export default function TransitionsModal() {
             timeout: 500,
           },
         }}
+        
       >
+      
         <Fade in={open}>
           <Box className ='modal' sx={style}>
+          <Button onClick={handleClose} variant='outlined' sx={{color:'white',borderColor:'#FFA500'}} ><AiOutlineClose/></Button>
            <Register/>
           </Box>
         </Fade>
