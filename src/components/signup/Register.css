@@ -47,7 +47,7 @@ button {
 }
 
 .instructions {
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     border-radius: 0.5rem;
     background: #000;
     color: #fff;
@@ -91,3 +91,19 @@ button {
     display: inline-block;
 }
 
+
+
+@media screen and (max-width: 599px) {
+    .first {
+        
+        font-size: .7em;
+        
+        
+      }
+      .firsth1{
+        margin-bottom: 0;
+      }
+      .container{
+        height: 82vh;
+      }
+} 

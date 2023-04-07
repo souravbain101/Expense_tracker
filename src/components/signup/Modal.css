@@ -1,6 +1,38 @@
-@media screen and (max-width:500px){
+@media screen and (max-width:600px){
     .modal{
      width: 90% !important;
      height: 90% !important;
     }
  }
+ @media screen and (min-width:601px ) and (max-width:900px){
+    .modal{
+     width: 70% !important;
+     height: 100% !important;
+    }
+ }
+ @media screen and (min-width:901px){
+    .modal{
+     width: 65% !important;
+     height: 100% !important;
+    }
+ }
+
+ 
+
+ .secondary-button {
+    /* padding: 1rem 2.5rem; */
+    background-image: linear-gradient(135deg, #C33764 10%, #1D2671 100%);
+    /* letter-spacing: 1px;
+    outline: none;
+    border: none;
+    border-radius: 5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: white;
+    transition: 0.2s;
+    margin-right: 10px; */
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+  }

@@ -1,0 +1,78 @@
+/* img{
+    max-width: 100%;
+    height: auto;
+} */
+.img-div{
+  display: flex;
+  justify-content: center;
+}
+.button-div{
+  display: flex;
+}
+.home-text-section{
+    /* flex: 2; */
+    
+    padding: 3rem;
+    font-size: 40px;
+    height: 100vh;
+    /* display: flex; */
+    background: linear-gradient(0deg, rgb(58, 197, 185) 38%, rgb(243, 182, 78) 97%);;
+    /* flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+}
+.primary-heading{
+    font-size: clamp(2rem,5vw,4rem);
+    background-image:  radial-gradient(circle, rgba(131,58,180,1) 6%, rgba(253,29,29,1) 77%, rgb(182, 118, 28) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    /* line-height */
+    max-width: 600px;
+    margin-top: 0;
+}
+.primary-text{
+    font-size: clamp(1rem,3vw,1.5rem);
+    max-width: 500px;
+    background-image: radial-gradient(circle, rgba(131,58,180,1) 6%, rgba(253,29,29,1) 77%, rgb(141, 97, 35) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: .5rem 0rem;
+  display: inline-block;
+}
+
+  .img-div img{
+    width: 80%;
+    margin-top: 1.6em;
+  
+  }
+  .updown-animation{
+    animation-name: infiniteupdown;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+    transition: all .2s;
+  }
+  @keyframes infiniteupdown {
+    0%{
+      transform: translateY(0px);
+    }
+    50%{
+      transform: translateY(-20px);
+    }
+    100%{
+      transform: translateY(0px);
+    }
+  }
+
+  @media screen and (max-width: 599px) {
+    .img-div img{
+     
+      margin-top: 1em;
+    
+    }
+    .button-div{
+      display: block;
+    }
+} 

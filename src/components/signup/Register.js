@@ -180,6 +180,7 @@ const Register = () => {
                             <Link to="/signin">Sign In</Link>
                         </span>
                     </p>
+                    
                 </section>
             )}
         </div>
