@@ -5,10 +5,12 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
-import Register from './Register';
+// import Register from './Register';
 import { FaSignInAlt } from "react-icons/fa";
  import { AiOutlineClose } from "react-icons/ai";
-import './Modal.css'
+import './SignupModal.css'
+import Signup from './Signup';
+
 
 const style = {
   position: 'absolute',
@@ -45,9 +47,9 @@ export default function TransitionsModal() {
       >
       
         <Fade in={open}>
-          <Box className ='modal' sx={style}>
+          <Box className ='smodal' sx={style}>
           <Button onClick={handleClose} variant='outlined' sx={{color:'white',borderColor:'#FFA500'}} ><AiOutlineClose/></Button>
-           <Register/>
+           <Signup/>
           </Box>
         </Fade>
       </Modal>

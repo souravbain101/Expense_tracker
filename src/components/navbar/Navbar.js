@@ -21,9 +21,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 
-const pages = ["Home", "Track expences", "Show expences"];
+// const pages = ["Home", "Track expences", "Show expences"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
-function Navbar() {
+function Navbar(props) {
   // use effect starts
   // useEffect(() => {
   //   if (window.screen.width <= 768) {
@@ -94,11 +94,11 @@ function Navbar() {
                   display: { xs: "block", md: "none" },
                 }}
               >
-                {pages.map((page) => (
+                {props.pages.map((page) => (
                   <MenuItem key={page} onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">
                       <Link
-                        style={{ textDecoration: "none", color: "white" }}
+                        style={{ textDecoration: "none", color: "black" }}
                         to={`/${page}`}
                       >
                         {page}
@@ -128,7 +128,7 @@ function Navbar() {
               Economizing
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              {pages.map((page) => (
+              {props.pages.map((page) => (
                 <Button
                   key={page}
                   onClick={handleCloseNavMenu}
