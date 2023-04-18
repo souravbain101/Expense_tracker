@@ -20,9 +20,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-
-// const pages = ["Home", "Track expences", "Show expences"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+// const pages = ["Home", "Track expences", "Show expences"]; pages are in app.js
+const settings = ["Profile", "Account", "Logout"];
 function Navbar(props) {
   // use effect starts
   // useEffect(() => {
@@ -66,14 +65,7 @@ function Navbar(props) {
             {/* will fix icon in next commit */}
             {/* <img  src={Icon}/> */}
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                color="inherit"
-              >
+              <IconButton size="large" aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true" onClick={handleOpenNavMenu} color="inherit">
                 <MenuIcon />
               </IconButton>
               <Menu
@@ -97,10 +89,7 @@ function Navbar(props) {
                 {props.pages.map((page) => (
                   <MenuItem key={page} onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">
-                      <Link
-                        style={{ textDecoration: "none", color: "black" }}
-                        to={`/${page}`}
-                      >
+                      <Link style={{ textDecoration: "none", color: "black" }} to={`/${page}`}>
                         {page}
                       </Link>
                     </Typography>
@@ -129,18 +118,10 @@ function Navbar(props) {
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {props.pages.map((page) => (
-                <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  <Link
-                    style={{ textDecoration: "none", color: "white" }}
-                    to={`/${page}`}
-                  >
+                <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: "white", display: "block" }}>
+                  <Link style={{ textDecoration: "none", color: "white" }} to={`/${page}`}>
                     {page}
                   </Link>
-                  {/* {page} */}
                 </Button>
               ))}
             </Box>
@@ -172,7 +153,9 @@ function Navbar(props) {
               >
                 {settings.map((setting) => (
                   <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
+                    <Typography textAlign="center">
+                      <Link style={{ textDecoration: "none",color:"black"}} to={`/${setting}`}>{setting}</Link>
+                    </Typography>
                   </MenuItem>
                 ))}
               </Menu>

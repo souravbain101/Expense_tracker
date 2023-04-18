@@ -14,6 +14,7 @@ import {Routes , Route} from 'react-router-dom';
 // import Signin from './components/signup/Signin';
 import ForgatePassword from './components/signup/ForgetPassword/ForgatePassword';
 import Resetpassword from './components/signup/ForgetPassword/Resetpassword';
+import Profile from './components/profile/Profile';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
       <Route path='/Track expences' element={<Track/>} />
       <Route path='/create account' element={<Modal/>} />
       <Route path='/Show expences' element={<Show/>} />
+      <Route path='/Profile' element={<Profile/>} />
       {/* <Route path='/signup' element={<Signup/>} />
       <Route path='/signin' element={<Signin/>} /> */}
       <Route path='/forgetpassword' element={<ForgatePassword/>} />
