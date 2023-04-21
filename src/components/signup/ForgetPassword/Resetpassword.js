@@ -45,7 +45,9 @@ export default function Resetpassword() {
           console.log(actualData);
 
           setTimeout(()=>{
+
             navigate('/')
+            
           },4000)
           
          

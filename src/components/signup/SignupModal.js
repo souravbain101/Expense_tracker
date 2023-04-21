@@ -29,7 +29,7 @@ export default function TransitionsModal() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+// console.log('hi');
   return (
     <div>
         <Button className='secondary-button' onClick={handleOpen} style={{backgroundColor: "#00bfa5"}} sx={{ mr: 3 }} variant="contained" color="primary">Sign up<FaSignInAlt/></Button>
@@ -49,7 +49,7 @@ export default function TransitionsModal() {
         <Fade in={open}>
           <Box className ='smodal' sx={style}>
           <Button onClick={handleClose} variant='outlined' sx={{color:'white',borderColor:'#FFA500'}} ><AiOutlineClose/></Button>
-           <Signup/>
+           <Signup />
           </Box>
         </Fade>
       </Modal>
