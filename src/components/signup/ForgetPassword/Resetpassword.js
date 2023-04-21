@@ -3,7 +3,8 @@ import { Card,Alert,Button,CardContent, Grid, TextField, Box} from '@mui/materia
 import { useState } from 'react';
 import React from 'react'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Reset_Password } from '../../Api/axios';
 
 
 export default function Resetpassword() {
@@ -16,6 +17,7 @@ export default function Resetpassword() {
         },
       });
 
+      const{id,token}=useParams();
       const navigate=useNavigate();
       const[error,seterror]=useState({
         status:false,
@@ -23,37 +25,39 @@ export default function Resetpassword() {
         type:""
 
       })
-      const handlesubmit=(e)=>{
+      const handlesubmit=async(e)=>{
         e.preventDefault();
         const data=new FormData(e.currentTarget);
         const actualData={
           
            
             password:data.get('password'),
-            confirm_password:data.get('Confirm_Password'),
+            password_confirmation:data.get('Confirm_Password'),
           
         }
-        if (actualData.password && actualData.confirm_password) {
-         if (actualData.password===actualData.confirm_password) {
+        if (actualData.password && actualData.password_confirmation) {
+         if (actualData.password===actualData.password_confirmation) {
           if (actualData.password.length<8) {
             seterror({status:true,msg:'Password must be 8 character',type:'error'})
           }
           else{
-            
-          seterror({status:true,msg:'Reset Password successfully,Redirecting to Login page.',type:'success'})
-          document.getElementById('Reset-form').reset();
-          console.log(actualData);
+            const res=await Reset_Password(actualData,id,token);
+            console.log(res.data);
+            if (res.data.status==='success') {
+              
+              seterror({status:true,msg:res.data.message,type:'success'})
+              document.getElementById('Reset-form').reset();
+              setTimeout(()=>{
 
-          setTimeout(()=>{
-
-            navigate('/')
-            
-          },4000)
-          
-         
-         
-          
-          
+                navigate('/')
+                
+              },4000)
+            }
+            if (res.data.status==='failed') {
+              seterror({status:true,msg:res.data.message,type:'error'})
+              document.getElementById('Reset-form').reset();
+            }
+                 
           }
          }
          else{

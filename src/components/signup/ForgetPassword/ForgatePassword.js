@@ -4,6 +4,7 @@ import { Alert, Box, Button, Card, CardContent, Grid, TextField } from '@mui/mat
 
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Forget_Password } from '../../Api/axios';
 
 
 export default function ForgatePassword() {
@@ -22,7 +23,7 @@ export default function ForgatePassword() {
 
       })
 
-      const handlesubmit=(e)=>{
+      const handlesubmit=async(e)=>{
         e.preventDefault();
         const data=new FormData(e.currentTarget);
         const actualData={
@@ -31,10 +32,17 @@ export default function ForgatePassword() {
         }
         if (actualData.email) {
          
-            
-          seterror({status:true,msg:'Password Reset Email sent, Please check your Email',type:'success'})
+          const res=await Forget_Password(actualData);
+          console.log(res.data);
+          if (res.data.status==='success') {
+            seterror({status:true,msg:res.data.message,type:'success'})
           document.getElementById('forgetpassword-form').reset();
-          console.log(actualData);
+          }
+          if (res.data.status==='failed') {
+            seterror({status:true,msg:res.data.message,type:'error'})
+            
+          }
+         
           
           
         }

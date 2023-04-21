@@ -55,7 +55,7 @@ function App() {
       <Route path='/Track expences' element={<Track/>} />
       <Route path='/Show expences' element={<Show/>} />
       <Route path='/forgetpassword' element={<ForgatePassword/>} />
-      <Route path='/resetpassword' element={<Resetpassword/>} />
+      <Route path='/api/user/reset/:id/:token' element={<Resetpassword/>} />
       <Route path='/profile' element={<Profile/>} />
       <Route path='*' element={<h1>404 Page not found !!</h1>}/>
     </Routes>
