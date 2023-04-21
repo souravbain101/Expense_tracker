@@ -20,3 +20,23 @@ export const Login=async(data)=>{
         console.log("error while calling the api",error);
     }
 }
+
+export const Forget_Password=async(data)=>{
+    try {
+        
+       return await axios.post(`${URL}/send-reset-password`,data);
+      
+    } catch (error) {
+        console.log("error while calling the api",error);
+    }
+}
+
+export const Reset_Password=async(data,id,token)=>{
+    try {
+        
+       return await axios.post(`${URL}/reset-password/${id}/${token}`,data);
+      
+    } catch (error) {
+        console.log("error while calling the api",error);
+    }
+}
