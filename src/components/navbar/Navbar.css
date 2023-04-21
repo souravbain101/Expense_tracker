@@ -2,4 +2,12 @@
     ul{
         background-color: #ffad16;
     }
+    
+    
+}
+
+@media screen and (min-width: 900px) {
+    .econimizing{
+        flex-grow: 0 !important;
+    }
 }

@@ -4,6 +4,11 @@ import React from 'react'
 import './signup.css'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Checkbox from '@mui/material/Checkbox';
+import { register } from '../Api/axios';
+// import { Storetoken } from '../Api/StoreToken/StoreToken';
+// import { useNavigate } from 'react-router-dom';
+
+
 
 
 export default function Signup() {
@@ -14,7 +19,8 @@ export default function Signup() {
           }
         },
       });
-
+      
+      // const navigate=useNavigate();
 
       const[error,seterror]=useState({
         status:false,
@@ -22,29 +28,41 @@ export default function Signup() {
         type:""
 
       })
-      const handlesubmit=(e)=>{
+      const handlesubmit=async(e)=>{
         e.preventDefault();
         const data=new FormData(e.currentTarget);
         const actualData={
-            UserName:data.get('UserName'),
+            name:data.get('name'),
             email:data.get('email'),
             password:data.get('password'),
-            confirm_password:data.get('Confirm_Password'),
+            password_confirmation:data.get('Confirm_Password'),
             tc:data.get('tc'),
         }
-        if (actualData.email && actualData.UserName && actualData.password && actualData.confirm_password && actualData.tc!==null) {
-         if (actualData.password===actualData.confirm_password) {
+        
+        if (actualData.email && actualData.name && actualData.password && actualData.password_confirmation && actualData.tc!==null) {
+         if (actualData.password===actualData.password_confirmation) {
           if (actualData.password.length<8) {
             seterror({status:true,msg:'Password must be 8 character',type:'error'})
           }
-          else{
-            
-          seterror({status:true,msg:'Registration Success,Please Signin',type:'success'})
+          else{         
           document.getElementById('signup_form').reset();
          
-          console.log(actualData);
+          const res=await register(actualData);
           
-          
+          if (res.data.status==='Success') {
+            // console.log(res.data.token.access_token,res.data.token.refresh_token);
+           
+            
+            
+            seterror({status:true,msg:res.data.message,type:'success'})
+            // setTimeout(()=>{
+            //  navigate('/dashboard')
+           
+            // },3000)
+          }
+          if (res.data.status==='failed') {
+            seterror({status:true,msg:res.data.message,type:'error'})
+          }         
           }
          }
          else{
@@ -67,7 +85,7 @@ export default function Signup() {
         <h2  style={{ color: "#FFA500"  }}>Register</h2>
             <Grid container spacing={2}>
             <Grid item xs={12}>
-            <TextField color="primary" type='text' label='User Name' name='UserName' variant="outlined" fullWidth   />
+            <TextField color="primary" type='text' label='User Name' name='name' variant="outlined" fullWidth   />
             </Grid>
 
             <Grid item xs={12}>
@@ -82,7 +100,7 @@ export default function Signup() {
             <TextField color="primary" type='password' label='Confirm Password' name='Confirm_Password' variant="outlined" fullWidth   />
             </Grid>
             <Grid item xs={12}>
-            <FormControlLabel control={<Checkbox value='agree' name='tc' id='tc'  />} label='Terms and Conditions'/>
+            <FormControlLabel control={<Checkbox value='true' name='tc' id='tc'  />} label='Terms and Conditions'/>
             </Grid>
             <Grid item xs={12} >
             <Button style={{width:'40%'}} type='submit' variant='contained' color='primary' sx={{color:'white'}}  >Register</Button>

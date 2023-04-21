@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState,useContext } from 'react'
 import { Alert, Box, Button, Card, CardContent, Grid, TextField } from '@mui/material'
 import { NavLink, useNavigate } from 'react-router-dom'
 import './signin.css'
-
+import { Storetoken } from '../Api/StoreToken/StoreToken'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import { Login } from '../Api/axios';
+import { Context } from '../../App';
 
 export default function Signin() {
     const theme = createTheme({
@@ -14,6 +15,7 @@ export default function Signin() {
           }
         },
       });
+      const context=useContext(Context);
       const navigate=useNavigate();
       const[error,seterror]=useState({
         status:false,
@@ -22,7 +24,7 @@ export default function Signin() {
 
       })
 
-      const handlesubmit=(e)=>{
+      const handlesubmit=async(e)=>{
         e.preventDefault();
         const data=new FormData(e.currentTarget);
         const actualData={
@@ -35,12 +37,26 @@ export default function Signin() {
           }
           else{
             
-          seterror({status:true,msg:'Login Success',type:'success'})
-          document.getElementById('login-form').reset();
-          console.log(actualData);
-          setTimeout(()=>{
-            navigate('/Home')
-          },4000)
+          
+          // document.getElementById('login-form').reset();
+          const res=await Login(actualData);
+          if (res.data.status==="Success") {
+            Storetoken('access_token',res.data.token.access_token);
+            Storetoken('refresh_token',res.data.token.refresh_token);
+            
+            seterror({status:true,msg:res.data.message,type:'success'})
+            setTimeout(()=>{
+              context.setauthenticated(true);
+              navigate('/dashboard')
+            },3000)
+          }
+          if (res.data.status==="failed") {
+            seterror({status:true,msg:res.data.message,type:'error'})
+          }
+          
+
+          
+         
          
           }
         }

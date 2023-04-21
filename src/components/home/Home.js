@@ -9,6 +9,7 @@ import './Home.css'
 import introduction from'../../images/pic12.png'
 import { Grid } from '@mui/material';
 const Home = () => {
+
   return (
     
     
@@ -18,7 +19,7 @@ const Home = () => {
       <h1 className='primary-heading'>Econimizing</h1>
       <p className='primary-text'>Tracking your expenses is one of the basic ways to have control over your personal finance. However, most people find it too hectic to keep a check on their daily expenses.</p>
       <div className='button-div'>
-     <SignupModal/>
+     <SignupModal />
      <SigninModal/>
       </div>
       </Grid>

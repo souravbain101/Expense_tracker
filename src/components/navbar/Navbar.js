@@ -16,12 +16,14 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+// import { useEffect } from "react";
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
+// import { Gettoken } from "../Api/StoreToken/StoreToken";
 
-// const pages = ["Home", "Track expences", "Show expences"]; pages are in app.js
-const settings = ["Profile", "Account", "Logout"];
+// const pages = ["Home", "Track expences", "Show expences"];
+const settings = ["Profile"];
 function Navbar(props) {
   // use effect starts
   // useEffect(() => {
@@ -33,6 +35,10 @@ function Navbar(props) {
   //   //  console.log("hi boys");
   // }, []);
   // use effect ends
+  // useEffect(()=>{
+  //   Gettoken();
+  //   },[]);
+  //   const token =Gettoken();
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const handleOpenNavMenu = (event) => {
@@ -56,6 +62,12 @@ function Navbar(props) {
       // mode:modeio?'dark':'light',
     },
   });
+  
+
+
+  //get token
+ 
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -97,19 +109,20 @@ function Navbar(props) {
                 ))}
               </Menu>
             </Box>
-            <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+            <AdbIcon sx={{ display: { xs: "flex" }, mr: 1 }} />
             <Typography
+            className="econimizing"
               variant="h5"
               noWrap
-              component="a"
+              // component="a"
               href=""
               sx={{
                 mr: 2,
-                display: { xs: "flex", md: "none" },
+                display: { xs: "flex"},
                 flexGrow: 1,
                 fontFamily: "monospace",
                 fontWeight: 700,
-                letterSpacing: ".3rem",
+                letterSpacing: ".2rem",
                 color: "inherit",
                 textDecoration: "none",
               }}
@@ -125,10 +138,10 @@ function Navbar(props) {
                 </Button>
               ))}
             </Box>
+           
             {/* <Modal /> */}
             {/* {window.screen.width > 768?<Modal />:<></>} */}
-
-            <Box sx={{ flexGrow: 0 }}>
+            {props.profile?<Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar alt="Remy Sharp" src={Sanupic} />
@@ -153,13 +166,13 @@ function Navbar(props) {
               >
                 {settings.map((setting) => (
                   <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">
-                      <Link style={{ textDecoration: "none",color:"black"}} to={`/${setting}`}>{setting}</Link>
-                    </Typography>
+                    <Typography textAlign="center"><Link style={{ textDecoration: "none", color: "black" }}
+                    to={`/${setting}`}>{setting}</Link></Typography>
                   </MenuItem>
                 ))}
               </Menu>
-            </Box>
+            </Box>:null}
+            
           </Toolbar>
         </Container>
       </AppBar>
