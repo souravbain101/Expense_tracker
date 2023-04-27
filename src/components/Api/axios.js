@@ -40,3 +40,28 @@ export const Reset_Password=async(data,id,token)=>{
         console.log("error while calling the api",error);
     }
 }
+
+export const Logged_user=async(token)=>{
+    try {
+       
+          const  headers= { authorization: `Bearer ${token}` }
+               
+       
+       return await axios.get(`${URL}/profile`,{headers});
+       
+      
+    } catch (error) {
+        console.log("error while calling the api",error);
+    }
+}
+
+
+export const ChangePassword=async(data,token)=>{
+    try {
+        const  headers= { authorization: `Bearer ${token}` }
+       return await axios.post(`${URL}/changepassword`,data,{headers});
+      
+    } catch (error) {
+        console.log("error while calling the api",error);
+    }
+}
