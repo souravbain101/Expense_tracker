@@ -15,7 +15,7 @@ import {Routes , Route} from 'react-router-dom';
 import ForgatePassword from './components/signup/ForgetPassword/ForgatePassword';
 import Resetpassword from './components/signup/ForgetPassword/Resetpassword';
 import { Gettoken } from './components/Api/StoreToken/StoreToken';
-import Profile from './components/Profile/Profile';
+import Profile from './components/profile/Profile';
 
 export const Context=createContext();
 function App() {
