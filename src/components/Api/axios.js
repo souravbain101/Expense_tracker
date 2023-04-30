@@ -65,3 +65,13 @@ export const ChangePassword=async(data,token)=>{
         console.log("error while calling the api",error);
     }
 }
+
+export const AddExpenseData=async(data,token)=>{
+    try {
+        const  headers= { authorization: `Bearer ${token}` }
+       return await axios.post(`${URL}/expence/add`,data,{headers});
+      
+    } catch (error) {
+        console.log("error while calling the api in /expence/add",error);
+    }
+}

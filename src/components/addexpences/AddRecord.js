@@ -1,4 +1,4 @@
-import { CardContent, Grid, TextField, Card } from "@mui/material";
+import { CardContent, Alert, Grid, TextField, Card } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -8,6 +8,7 @@ import AddIcon from "@mui/icons-material/Add";
 import Fab from "@mui/material/Fab";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "./AddRecord.css";
+import { AddExpenseData } from "../Api/axios";
 
 const theme = createTheme({
   palette: {
@@ -18,23 +19,43 @@ const theme = createTheme({
 });
 
 export default function AddRecord() {
-  const Exrecord = {
-    category: "",
-    date: "",
-    currency: "",
-    amount: "",
-  };
-  const [Record, setRecord] = useState(Exrecord);
+  const [error, seterror] = useState({
+    status: false,
+    msg: "",
+    type: "",
+  });
+
+  const [Record, setRecord] = useState({ category: "", date: "", currency: "", amount: "" });
   const handlechange = (event) => {
     setRecord({ ...Record, [event.target.name]: event.target.value });
   };
-  const handleclick = () => {
-    console.log(Record);
+  function er(res) {
+    if (res.data.status === "success") {
+      seterror({ status: true, msg: res.data.message, type: "success" });
+    } else if (res.data.status === "failed") {
+      seterror({ status: true, msg: res.data.message, type: "error" });
+    }
+    setTimeout(() => {
+      seterror({ status: false });
+    }, 2000);
+  }
+  const handleclick = async (e) => {
+    e.preventDefault();
+
+    if (Record.category !== "" && Record.data !== "" && Record.currency !== "" && Record.amount !== "") {
+      const res = await AddExpenseData(Record);
+      er(res);
+    } else {
+      seterror({ status: true, msg: "All Fields are Required", type: "error" });
+      setTimeout(() => {
+        seterror({ status: false });
+      }, 1800);
+    }
   };
   //  for neg value typed and neg value to be pasted
 
   const preventPasteNegative = (e) => {
-    const clipboardData = e.clipboardData || window.clipboardData;
+    const clipboardData = e.clipboardData || e.clipboardData;
     const pastedData = parseFloat(clipboardData.getData("text"));
 
     if (pastedData < 0) {
@@ -46,17 +67,17 @@ export default function AddRecord() {
       e.preventDefault();
     }
   };
-  
+
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <Card style={{ width: "50%", margin: "10% auto" }} className="responsive">
+        <Card id="signup_form" style={{ width: "50%", margin: "10% auto" }} className="responsive">
           <CardContent style={{ textAlign: "center" }}>
             <h2 className="addexp" style={{ color: "#FFA500" }}>
               Add Expenses
             </h2>
 
-            <Grid container spacing={2}>
+            <Grid id="mocho" container spacing={2}>
               <Grid item xs={12}>
                 <FormControl required fullWidth>
                   <InputLabel id="demo-select-small" style={{ background: "white" }}>
@@ -92,9 +113,12 @@ export default function AddRecord() {
               </Grid>
 
               <Grid item xs={12} sx={{ mt: "15px" }}>
-                <Fab color="primary" aria-label="add" onClick={handleclick}>
+                <Fab disabled={false} color="primary" aria-label="add" onClick={handleclick}>
                   <AddIcon />
                 </Fab>
+              </Grid>
+              <Grid item xs={12}>
+                {error.status ? <Alert severity={error.type}>{error.msg}</Alert> : ""}
               </Grid>
             </Grid>
           </CardContent>
