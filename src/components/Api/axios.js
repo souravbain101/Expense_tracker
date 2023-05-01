@@ -66,6 +66,20 @@ export const ChangePassword=async(data,token)=>{
     }
 }
 
+
+export const Refresh_token_api=async(token)=>{
+    try {
+       
+          const  headers= { authorization: `Bearer ${token}` }
+               
+       
+       return await axios.get(`${URL}/refresh_token`,{headers});
+       
+      
+    } catch (error) {
+        console.log("error while calling the api",error);
+    }
+}
 export const AddExpenseData=async(data,token)=>{
     try {
         const  headers= { authorization: `Bearer ${token}` }
