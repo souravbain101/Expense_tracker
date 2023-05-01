@@ -1,4 +1,4 @@
-import { CardContent, Alert, Grid, TextField, Card } from "@mui/material";
+import { CardContent, Alert, Grid, TextField, Card, Box } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -9,6 +9,7 @@ import Fab from "@mui/material/Fab";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "./AddRecord.css";
 import { AddExpenseData } from "../Api/axios";
+import { Gettoken } from "../Api/StoreToken/StoreToken";
 
 const theme = createTheme({
   palette: {
@@ -26,10 +27,11 @@ export default function AddRecord() {
   });
 
   const [Record, setRecord] = useState({ category: "", date: "", currency: "", amount: "" });
+  
   const handlechange = (event) => {
     setRecord({ ...Record, [event.target.name]: event.target.value });
   };
-  function er(res) {
+  function erroFunc(res) {
     if (res.data.status === "success") {
       seterror({ status: true, msg: res.data.message, type: "success" });
     } else if (res.data.status === "failed") {
@@ -41,10 +43,15 @@ export default function AddRecord() {
   }
   const handleclick = async (e) => {
     e.preventDefault();
-
+    console.log(Record.date);
+    // setRecord({ ...Record, [event.target.name]: event.target.value });
     if (Record.category !== "" && Record.data !== "" && Record.currency !== "" && Record.amount !== "") {
-      const res = await AddExpenseData(Record);
-      er(res);
+      const res = await AddExpenseData(Record,Gettoken());
+      document.getElementById('signup_form').reset();
+      // document.getElementById('signup_form').value="";
+      // document.getElementById('demo-select-small').dropDownListObject.value = null;
+      erroFunc(res);
+      e.target.value=""
     } else {
       seterror({ status: true, msg: "All Fields are Required", type: "error" });
       setTimeout(() => {
@@ -71,13 +78,14 @@ export default function AddRecord() {
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <Card id="signup_form" style={{ width: "50%", margin: "10% auto" }} className="responsive">
+      <Box component='form' id='signup_form'>
+        <Card style={{ width: "50%", margin: "10% auto" }} className="responsive">
           <CardContent style={{ textAlign: "center" }}>
             <h2 className="addexp" style={{ color: "#FFA500" }}>
               Add Expenses
             </h2>
 
-            <Grid id="mocho" container spacing={2}>
+            <Grid container spacing={2}>
               <Grid item xs={12}>
                 <FormControl required fullWidth>
                   <InputLabel id="demo-select-small" style={{ background: "white" }}>
@@ -123,6 +131,7 @@ export default function AddRecord() {
             </Grid>
           </CardContent>
         </Card>
+        </Box>
       </ThemeProvider>
     </div>
   );
