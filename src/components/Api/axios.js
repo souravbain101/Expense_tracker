@@ -7,7 +7,7 @@ export const register=async(data)=>{
        return await axios.post(`${URL}/register`,data);
       
     } catch (error) {
-        console.log("error while calling the api",error);
+        console.log("error while calling the api in /register",error);
     }
 }
 
@@ -17,7 +17,7 @@ export const Login=async(data)=>{
        return await axios.post(`${URL}/login`,data);
       
     } catch (error) {
-        console.log("error while calling the api",error);
+        console.log("error while calling the api in /login",error);
     }
 }
 
@@ -27,7 +27,7 @@ export const Forget_Password=async(data)=>{
        return await axios.post(`${URL}/send-reset-password`,data);
       
     } catch (error) {
-        console.log("error while calling the api",error);
+        console.log("error while calling the api in /send-reset-password",error);
     }
 }
 
@@ -37,7 +37,7 @@ export const Reset_Password=async(data,id,token)=>{
        return await axios.post(`${URL}/reset-password/${id}/${token}`,data);
       
     } catch (error) {
-        console.log("error while calling the api",error);
+        console.log("error while calling the api in /reset-password",error);
     }
 }
 
@@ -78,5 +78,14 @@ export const Refresh_token_api=async(token)=>{
       
     } catch (error) {
         console.log("error while calling the api",error);
+    }
+}
+export const AddExpenseData=async(data,token)=>{
+    try {
+        const  headers= { authorization: `Bearer ${token}` }
+       return await axios.post(`${URL}/expence/add`,data,{headers});
+      
+    } catch (error) {
+        console.log("error while calling the api in /expence/add",error);
     }
 }
