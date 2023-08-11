@@ -98,3 +98,15 @@ export const FetchAllExpences=async(token)=>{
         console.log("error while calling the api in /expence/fetchedata",error);
     }
 }
+
+export const FetchDashData=async(token)=>{
+    try {
+        const  headers= { authorization: `Bearer ${token}` }
+       return await axios.get(`${URL}/expence/fetchdashdata`,{headers});
+      
+    } catch (error) {
+        console.log("error while calling the api in /expence/fetchdashdata",error);
+    }
+}
+
+
