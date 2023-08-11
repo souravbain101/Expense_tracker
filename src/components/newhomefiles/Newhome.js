@@ -40,6 +40,7 @@ export default function Newhome() {
               />
             }
           />
+          
             </CardContent>
         </Card>
         
