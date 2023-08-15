@@ -109,4 +109,14 @@ export const FetchDashData=async(token)=>{
     }
 }
 
+export const Fetchlastmonthdata=async(token)=>{
+    try {
+        const  headers= { authorization: `Bearer ${token}` }
+       return await axios.get(`${URL}/expence/Fetchlastmonthdata`,{headers});
+      
+    } catch (error) {
+        console.log("error while calling the api in /expence/Fetchlastmonthdata",error);
+    }
+}
+
 
