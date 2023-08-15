@@ -18,7 +18,7 @@ import { FetchDashData } from '../Api/axios';
     const GetData=async()=>{
      
       const res=await FetchDashData(Gettoken());
-      console.log(res.data);
+      // console.log(res.data);
       
      setData(res.data);
     }

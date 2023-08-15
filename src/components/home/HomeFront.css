@@ -8,7 +8,9 @@
 }
 .homeimg{
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
+   
 }
+
 
 @keyframes up-down {
     0%{

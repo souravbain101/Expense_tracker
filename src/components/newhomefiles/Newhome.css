@@ -9,3 +9,22 @@
     display: flex;
     justify-content: center;
 }
+.piebox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.piebox1{
+    display: flex;
+    flex-direction: column !important;
+    justify-content: center;
+    align-items: center;
+}
+body{
+    background-color: #FFF7D4 !important;
+}
+
+
+

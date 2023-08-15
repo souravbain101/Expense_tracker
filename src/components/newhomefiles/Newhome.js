@@ -1,17 +1,58 @@
-import StatBox from "./StatBox";
+
+import ProgressCircle from "./ProgressCircle"
 import LineChart from "./LineChart";
-// import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import EqualizerIcon from '@mui/icons-material/Equalizer';
-// import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
 import { tokens } from "./theme";
 import { CardContent,Card, Grid, useTheme } from "@mui/material";
 import {Typography,Box} from "@mui/material";
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Newhome.css';
+import { Gettoken } from "../Api/StoreToken/StoreToken";
+import { Fetchlastmonthdata } from "../Api/axios";
+
+
+
 
 export default function Newhome() {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
+    
+    useEffect(()=>{
+      GetlastmonthsData();
+    },[])
+
+    
+    // let data=[
+    //   {"name":"",value:0}
+    // ];
+    const[mydata,setdata]=useState(null)
+
+    const GetlastmonthsData=async()=>{
+      const res=await Fetchlastmonthdata(Gettoken());
+      
+      
+      
+      // console.log(res.data);
+      let data1=res.data[0];
+      let data2=res.data[1];
+      let data3=res.data[2];
+      if (data1[3].month===0) {
+        data1[3].month='No Data Found';
+      }
+      else if(data2[3].month===0){
+        data2[3].month='No Data Found';
+      }
+      
+      else if(data3[3].month===0){
+        data3[3].month='No Data Found';
+      }
+      // console.log(data3[3].month)
+      // console.log(data1[3]);
+      setdata(res.data)
+      
+      
+    }
+    
+
   return (
     <div>
 
@@ -26,79 +67,53 @@ export default function Newhome() {
 
       <Grid container spacing={1} >
 
-      <Grid item xs={12} sm={4}>
+      {/* ?.length er mane holo prothome null thakle erron jate na dae kintu jokhon array
+       chole asbe tokhon abar jate .length ta kaj kore and map ta start hobe. */}
+
+      {mydata?.length && mydata.map((v,i)=><Grid key={i} item xs={12} sm={4}>
         <Card className="reshome" style={{margin:'1.5em 0 1em 0'}}>
-            <CardContent>
-            <StatBox
-            title="32,441"
-            subtitle="Expenses"
-            progress="0.30"
-            increase="+5%"
-            icon={
-              <EqualizerIcon
-                sx={{ color: colors.orangeAccent[600], fontSize: "20px" }}
-              />
-            }
-          />
+            <CardContent  >
+          <Grid container spacing={1}>
+          <Grid item sm={12} className="piebox1">
+          <div style={{color:'#ff9100',fontWeight:'bold'}} >{v[3]['month']}</div>
+          <div>
+          <ProgressCircle data={v}/>
+          </div>
+          </Grid>
+          <Grid item sm={12} className="piebox">
           
+            
+          
+          
+          <h5  style={{color:"#0088FE",margin:"6px"}}>Food</h5>
+          <h5  style={{color:"#00C49F",margin:"6px"}}>Rents</h5>
+          <h5  style={{color:"#FF8042",margin:"6px"}}>Entertainment</h5>
+          </Grid>
+          </Grid>
             </CardContent>
         </Card>
         
-      </Grid>
+      </Grid>)}
 
-      <Grid  item xs={12} sm={4}>
-      <Card className="reshome" style={{margin:'1.5em 0 1em 0'}}>
-            <CardContent>
-            <StatBox
-            title="32,441"
-            subtitle="Expenses"
-            progress="0.30"
-            increase="+5%"
-            icon={
-              <EqualizerIcon
-                sx={{ color: colors.orangeAccent[600], fontSize: "20px" }}
-              />
-            }
-          />
-            </CardContent>
-        </Card>
-      </Grid>
-
-      <Grid  item xs={12} sm={4}>
-      <Card className="reshome" style={{margin:'1.5em 0 1em 0'}}>
-            <CardContent>
-            <StatBox
-            title="32,441"
-            subtitle="Expenses"
-            progress="0.30"
-            increase="+5%"
-            icon={
-              <EqualizerIcon
-                sx={{ color: colors.orangeAccent[600], fontSize: "20px" }}
-              />
-            }
-          />
-            </CardContent>
-        </Card>
-      </Grid>
+      
 
       <Grid  item xs={12} sm={8}>
       <Card className="reshome" >
-        <CardContent>
+        <CardContent >
         <Typography
                 variant="h5"
                 fontWeight="600"
-                color={colors.grey[100]}
+                sx={{color:'#ff9100',marginBottom:'7px'}}
               >
-                Last Month
+                Visualization Of Expenses
               </Typography>
-              <Typography
+              {/* <Typography
                 variant="h5"
                 fontWeight="bold"
                 color={colors.orangeAccent[500]}
               >
                 $59,342.32
-              </Typography>
+              </Typography> */}
 
               {/* <LineChart isHome={true} /> */}
               <Box height="250px">
@@ -111,12 +126,13 @@ export default function Newhome() {
 
       <Grid  item xs={12} sm={4}>
       <Card className="reshome" >
-        <CardContent>
+        <CardContent >
         <Box style={{height:'250px'}}>
 
         
             <Typography color={colors.grey[100]} variant="h5" fontWeight="600"
-             borderBottom={`4px solid ${colors.primary[500]}`}
+            //  borderBottom={`4px solid ${colors.primary[500]}`}
+             sx={{color:'#f52323',marginBottom:'7px',borderBottom:'4px solid #FFF7D4'}}
             >
               Recent Transactions
             </Typography>
