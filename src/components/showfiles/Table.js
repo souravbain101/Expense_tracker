@@ -14,7 +14,7 @@ const Example = () => {
 
   useEffect(() => {
     GelAllDatas();
-  }, [mydata]);
+  }, []);
 
   //should be memoized or stable
   const columns = useMemo(() => [
