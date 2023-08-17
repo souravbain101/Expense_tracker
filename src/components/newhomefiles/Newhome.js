@@ -32,21 +32,24 @@ export default function Newhome() {
       
       
       // console.log(res.data);
+      // console.log(res.data);
       let data1=res.data[0];
       let data2=res.data[1];
       let data3=res.data[2];
-      if (data1[3].month===0) {
+      
+      if (data1[3].month===0 ) {
         data1[3].month='No Data Found';
+        
       }
-      else if(data2[3].month===0){
+      if(data2[3].month===0){
         data2[3].month='No Data Found';
       }
       
-      else if(data3[3].month===0){
+      if(data3[3].month===0){
         data3[3].month='No Data Found';
       }
-      // console.log(data3[3].month)
-      // console.log(data1[3]);
+      console.log(data3[3].month)
+      console.log(data1[3]);
       setdata(res.data)
       
       
