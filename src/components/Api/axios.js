@@ -122,4 +122,14 @@ export const Fetchlastmonthdata=async(token)=>{
     }
 }
 
+export const FetchTransaction=async(token)=>{
+    try {
+        const  headers= { authorization: `Bearer ${token}` }
+       return await axios.get(`${URL}/expence/FetchTransaction`,{headers});
+      
+    } catch (error) {
+        console.log("error while calling the api in /expence/FetchTransaction",error);
+    }
+}
+
 
