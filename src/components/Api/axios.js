@@ -1,7 +1,9 @@
 import axios from "axios";
 
-// const URL='https://exp-backend-rn98.onrender.com';
-const URL='http://localhost:8000'
+// // const URL='https://exp-backend-rn98.onrender.com';
+// const URL='http://localhost:8000'
+const URL='https://backend-d5zl.onrender.com';
+
 export const register=async(data)=>{
     try {
         
@@ -117,6 +119,16 @@ export const Fetchlastmonthdata=async(token)=>{
       
     } catch (error) {
         console.log("error while calling the api in /expence/Fetchlastmonthdata",error);
+    }
+}
+
+export const FetchTransaction=async(token)=>{
+    try {
+        const  headers= { authorization: `Bearer ${token}` }
+       return await axios.get(`${URL}/expence/FetchTransaction`,{headers});
+      
+    } catch (error) {
+        console.log("error while calling the api in /expence/FetchTransaction",error);
     }
 }
 

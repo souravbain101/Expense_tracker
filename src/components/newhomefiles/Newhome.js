@@ -8,6 +8,8 @@ import React, { useEffect, useState } from 'react'
 import './Newhome.css';
 import { Gettoken } from "../Api/StoreToken/StoreToken";
 import { Fetchlastmonthdata } from "../Api/axios";
+import { FetchTransaction } from "../Api/axios";
+// import { green } from "@mui/material/colors";
 
 
 
@@ -18,13 +20,15 @@ export default function Newhome() {
     
     useEffect(()=>{
       GetlastmonthsData();
+      GetrecentTransaction();
     },[])
 
     
     // let data=[
     //   {"name":"",value:0}
     // ];
-    const[mydata,setdata]=useState(null)
+    const[mydata,setdata]=useState(null);
+    const[Recentdata,setRecentdata]=useState(null);
 
     const GetlastmonthsData=async()=>{
       const res=await Fetchlastmonthdata(Gettoken());
@@ -32,24 +36,33 @@ export default function Newhome() {
       
       
       // console.log(res.data);
+      // console.log(res.data);
       let data1=res.data[0];
       let data2=res.data[1];
       let data3=res.data[2];
-      if (data1[3].month===0) {
+      
+      if (data1[3].month===0 ) {
         data1[3].month='No Data Found';
+        
       }
-      else if(data2[3].month===0){
+      if(data2[3].month===0){
         data2[3].month='No Data Found';
       }
       
-      else if(data3[3].month===0){
+      if(data3[3].month===0){
         data3[3].month='No Data Found';
       }
-      // console.log(data3[3].month)
-      // console.log(data1[3]);
+      console.log(data3[3].month)
+      console.log(data1[3]);
       setdata(res.data)
       
       
+    }
+
+    const GetrecentTransaction=async()=>{
+      const res=await FetchTransaction(Gettoken());
+      console.log(res.data);
+      setRecentdata(res.data)
     }
     
 
@@ -124,29 +137,31 @@ export default function Newhome() {
 
       </Grid>
 
-      <Grid  item xs={12} sm={4}>
+      <Grid   item xs={12} sm={4}>
       <Card className="reshome" >
         <CardContent >
-        <Box style={{height:'250px'}}>
+        <Box style={{height:'50vh'}}>
 
         
             <Typography color={colors.grey[100]} variant="h5" fontWeight="600"
             //  borderBottom={`4px solid ${colors.primary[500]}`}
-             sx={{color:'#f52323',marginBottom:'7px',borderBottom:'4px solid #FFF7D4'}}
+             sx={{color:'#66e16c',marginBottom:'9px',borderBottom:'4px solid #FFF7D4'}}
             >
               Recent Transactions
             </Typography>
 
-            <Typography
-                variant="h5"
+            {Recentdata?.length && Recentdata.map((v,i)=> <Typography
+                key={i}
+                variant="h6"
                 fontWeight="bold"
-                margin='5px'
-                color={colors.orangeAccent[500]}
+                fontSize={'1em'}
+                margin='10px'
+                color={'red'}
               >
-                $59,342.32
-              </Typography>
+                {i+1}.  -{v.amount} {v.currency} For {v.category}
+              </Typography>)}
 
-              <Typography
+              {/* <Typography
                 variant="h5"
                 fontWeight="bold"
                 margin='5px'
@@ -161,7 +176,7 @@ export default function Newhome() {
                 color={colors.orangeAccent[500]}
               >
                 $59,342.32
-              </Typography>
+              </Typography> */}
               </Box>
         </CardContent>
       </Card>
