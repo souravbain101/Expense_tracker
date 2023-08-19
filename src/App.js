@@ -49,7 +49,7 @@ function App() {
       }
     }
     else{
-      console.log("token not present");
+      console.log("token not present 1");
     }
        //eslint-disable-next-line
     },[isauthenticated]);
@@ -84,7 +84,7 @@ function App() {
           }
         }
         else{
-          console.log("token not present");
+          console.log("token not present 2");
         }
       },600000);
       //eslint-disable-next-line

@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const URL='http://localhost:8000';
+// const URL='https://exp-backend-rn98.onrender.com';
+const URL='http://localhost:8000'
 export const register=async(data)=>{
     try {
         
