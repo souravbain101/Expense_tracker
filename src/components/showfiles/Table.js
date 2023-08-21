@@ -1,33 +1,43 @@
 import React, { useEffect, useMemo, useState, useRef } from "react";
 import MaterialReactTable from "material-react-table";
-import { FetchAllExpences } from "../Api/axios";
+import { FetchAllExpences,DeleteExpenseData} from "../Api/axios";
 import { Gettoken } from "../Api/StoreToken/StoreToken";
 import { useReactToPrint } from "react-to-print";
 import "./Table.css";
 import { Delete, Edit } from "@mui/icons-material";
-import { Box, Button, IconButton, Tooltip } from "@mui/material";
+import { Alert, Box, Button, IconButton, Tooltip } from "@mui/material";
 
 //nested data is ok, see accessorKeys in ColumnDef below
 const Example = () => {
   const data = [];
   const [mydata, setMydata] = useState(data);
+  
   const GelAllDatas = async () => {
     const res = await FetchAllExpences(Gettoken());
     setMydata(res.data);
     // console.log(res.data);
   };
 
-  const handleSaveRowEdits = () => {
+  const handleSaveRowEdits = async({exitEditingMode,row, values}) => {
     console.log("handleSaveRowEdits");
+    // mydata[row.index] = values 
+    // setMydata(...mydata);
+    console.log(mydata[row.index]);
+    console.log(mydata[row.index]._id);
+    exitEditingMode();
   };
-  const [createModalOpen, setCreateModalOpen] = useState(false);
   const handleCancelRowEdits = () => {
     console.log("handleCancelRowEdits");
-    setCreateModalOpen(false);
   };
-  const handleDeleteRow = () => {
+
+  const handleDeleteRow = async(dataid) => {
     console.log("handleDeleteRow");
-    setCreateModalOpen(false);
+    console.log(dataid.original._id);
+    const res = await DeleteExpenseData(dataid.original._id,Gettoken());
+    console.log(res);
+    // Alert("hi")
+    // confirm(`Are you sure you want to delete ${dataid.original._id}`)
+
   };
   // printing for pdf
   const componentRef = useRef();

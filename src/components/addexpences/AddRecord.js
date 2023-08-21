@@ -48,8 +48,6 @@ export default function AddRecord() {
     if (Record.category !== "" && Record.data !== "" && Record.currency !== "" && Record.amount !== "") {
       const res = await AddExpenseData(Record,Gettoken());
       document.getElementById('signup_form').reset();
-      // document.getElementById('signup_form').value="";
-      // document.getElementById('demo-select-small').dropDownListObject.value = null;
       erroFunc(res);
       e.target.value=""
     } else {
