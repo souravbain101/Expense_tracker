@@ -1,14 +1,16 @@
 import { Button, Card, CardContent } from '@mui/material'
-import React from 'react'
-import { Removetoken } from '../Api/StoreToken/StoreToken'
+import React, { useEffect, useState } from 'react'
+import { Gettoken, Removetoken } from '../Api/StoreToken/StoreToken'
 import { useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 import './profile.css'
 import sanu from '../../images/sanu.jpg'
 import { Context } from '../../App';
 import { Grid } from '@mui/material'
-import Resetpassword from '../signup/ForgetPassword/Resetpassword'
+
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Logged_user } from '../Api/axios'
+import ChangePass from '../signup/ForgetPassword/ChangePasssword'
 
 
 export default function Profile() {
@@ -19,7 +21,33 @@ export default function Profile() {
       }
     },
   });
+const user_details={
+  name:'',
+  email:''
+}
+const [user,setuser]=useState(user_details);
 
+
+const handle_loggeduser=async()=>{
+  const token=Gettoken();
+  if (token) {
+    const res=await Logged_user(token);
+    // console.log(res.data.user.name);
+    setuser({
+      name:res.data.user.name,
+      email:res.data.user.email,
+    })
+    
+  }
+  else{
+    console.log('error');
+  }
+
+}
+useEffect(()=>{
+  handle_loggeduser();
+  
+  },[])
 
   const context = useContext(Context);
   const navigate = useNavigate();
@@ -42,12 +70,11 @@ export default function Profile() {
       <CardContent style={{ textAlign: 'center' }}  >
      
 
-          <h3>Anubrati Chakraborty</h3>
-          <h4>Details</h4>
+          <h3> {user.name}</h3>
+          
           <h4>Email:</h4>
-          <h5>anu..@gmail.com</h5>
-          <h4>Location:</h4>
-          <h5>11/c chatra ,serampore</h5>
+          <h5>{user.email}</h5>
+         
 
           <Button color='primary' variant='contained' sx={{color:'white'}} onClick={handleclick}>Logout</Button>
           </CardContent>
@@ -55,7 +82,7 @@ export default function Profile() {
         </Grid>
 
         <Grid item xs={12} sm={6}>
-          <Resetpassword />
+          <ChangePass/>
         </Grid>
 
       </Grid>
