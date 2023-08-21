@@ -70,7 +70,7 @@ useEffect(()=>{
       <CardContent style={{ textAlign: 'center' }}  >
      
 
-          <h3>{user.name}</h3>
+          <h3> {user.name}</h3>
           
           <h4>Email:</h4>
           <h5>{user.email}</h5>
