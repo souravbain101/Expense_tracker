@@ -1,27 +1,34 @@
-import React, { useEffect, useMemo, useState, useRef } from "react";
+import React, { useMemo, useState, useRef } from "react";
 import MaterialReactTable from "material-react-table";
-import { FetchAllExpences,DeleteExpenseData} from "../Api/axios";
+import { FetchAllExpences} from "../Api/axios";
 import { Gettoken } from "../Api/StoreToken/StoreToken";
 import { useReactToPrint } from "react-to-print";
 import "./Table.css";
-import { Delete, Edit } from "@mui/icons-material";
-import { Alert, Box, Button, IconButton, Tooltip } from "@mui/material";
-
+import { Edit } from "@mui/icons-material";
+import {  Box, Button, IconButton, Tooltip } from "@mui/material";
+import Modalpopup from "./dltmodal"
+import EdModalpopup from "./editmodal";
 //nested data is ok, see accessorKeys in ColumnDef below
 const Example = () => {
+
   const data = [];
   const [mydata, setMydata] = useState(data);
+  const [deleted, setdeleted] = useState(false);
   
+
   const GelAllDatas = async () => {
     const res = await FetchAllExpences(Gettoken());
     setMydata(res.data);
+    setdeleted(false)
     // console.log(res.data);
   };
 
+  useMemo(()=>{
+    GelAllDatas();
+  },[deleted])
+
   const handleSaveRowEdits = async({exitEditingMode,row, values}) => {
     console.log("handleSaveRowEdits");
-    // mydata[row.index] = values 
-    // setMydata(...mydata);
     console.log(mydata[row.index]);
     console.log(mydata[row.index]._id);
     exitEditingMode();
@@ -29,25 +36,16 @@ const Example = () => {
   const handleCancelRowEdits = () => {
     console.log("handleCancelRowEdits");
   };
-
-  const handleDeleteRow = async(dataid) => {
-    console.log("handleDeleteRow");
-    console.log(dataid.original._id);
-    const res = await DeleteExpenseData(dataid.original._id,Gettoken());
-    console.log(res);
-    // Alert("hi")
-    // confirm(`Are you sure you want to delete ${dataid.original._id}`)
-
-  };
+  
   // printing for pdf
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
 
-  useEffect(() => {
-    GelAllDatas();
-  }, []);
+  // useEffect(() => {
+  //   GelAllDatas();
+  // }, []);
 
   //should be memoized or stable
   const columns = useMemo(
@@ -77,22 +75,19 @@ const Example = () => {
       <div ref={componentRef}>
         <MaterialReactTable
           columns={columns}
-          data={mydata}
-          editingMode="modal" //default
+          data={mydata} //default
           enableColumnOrdering
           enableEditing
-          onEditingRowSave={handleSaveRowEdits}
-          onEditingRowCancel={handleCancelRowEdits}
-          renderRowActions={({ row, table }) => (
+          renderRowActions={({ row }) => (
             <Box sx={{ display: "flex", gap: "1rem" }}>
               <Tooltip arrow placement="left" title="Edit">
-                <IconButton onClick={() => table.setEditingRow(row)}>
-                  <Edit />
+                <IconButton >
+                  <EdModalpopup itemid={row}/>
                 </IconButton>
               </Tooltip>
               <Tooltip arrow placement="right" title="Delete">
-                <IconButton color="error" onClick={() => handleDeleteRow(row)}>
-                  <Delete />
+                <IconButton color="error" >
+                  <Modalpopup itemid={row} setdeleted={setdeleted}/>
                 </IconButton>
               </Tooltip>
             </Box>

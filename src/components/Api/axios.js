@@ -3,10 +3,10 @@ import axios from "axios";
 // // const URL='https://exp-backend-rn98.onrender.com';
 
 // this is local host link
-// const URL='http://localhost:8000'
+const URL='http://localhost:8000'
 
 // this is server link
-const URL='https://backend-d5zl.onrender.com';
+// const URL='https://backend-d5zl.onrender.com';
 
 export const register=async(data)=>{
     try {
@@ -96,13 +96,13 @@ export const AddExpenseData=async(data,token)=>{
         console.log("error while calling the api in /expence/add",error);
     }
 }
-export const DeleteExpenseData=async(data,token)=>{
+export const DeleteExpenseData=async(id,token)=>{
     try {
         const  headers= { authorization: `Bearer ${token}` }
-       return await axios.delete(`${URL}/expence/delete`,data,{headers});
+       return await axios.delete(`${URL}/expence/delete/${id}`,{headers});
       
     } catch (error) {
-        console.log("error while calling the api in /expence/delete",error);
+        console.log("error while calling the api in /expence/delete/${id}",error);
     }
 }
 export const FetchAllExpences=async(token)=>{

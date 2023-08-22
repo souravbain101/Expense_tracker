@@ -29,6 +29,8 @@ export default function AddRecord() {
   const [Record, setRecord] = useState({ category: "", date: "", currency: "", amount: "" });
   
   const handlechange = (event) => {
+    console.log(event);
+    console.log("event");
     setRecord({ ...Record, [event.target.name]: event.target.value });
   };
   function erroFunc(res) {
@@ -47,9 +49,8 @@ export default function AddRecord() {
     // setRecord({ ...Record, [event.target.name]: event.target.value });
     if (Record.category !== "" && Record.data !== "" && Record.currency !== "" && Record.amount !== "") {
       const res = await AddExpenseData(Record,Gettoken());
-      document.getElementById('signup_form').reset();
+      setRecord(Record.category="",Record.date="",Record.currency="",Record.amount="");
       erroFunc(res);
-      e.target.value=""
     } else {
       seterror({ status: true, msg: "All Fields are Required", type: "error" });
       setTimeout(() => {

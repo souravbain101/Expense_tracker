@@ -1,0 +1,32 @@
+
+@media screen and (max-width: 600px) {
+    .edtmdlbdy {
+      width: 80% !important;
+      height: 10% !important;
+      top: 30% !important;
+      padding: 10px !important;
+    }
+    .fonty {
+      font-size: 20px !important;
+    }
+    .btw{padding-top:5px;}
+  }
+  @media screen and (min-width: 601px) and (max-width: 900px) {
+    .edtmdlbdy {
+      width: 50% !important;
+      height: 20% !important;
+      .btw{padding-top:20px;}
+    }
+  }
+  @media screen and (min-width: 901px) {
+    .edtmdlbdy {
+      width: 38% !important;
+      height: 70% !important;
+    }
+    .btw{padding-top:20px;}
+  }
+  .btw {
+    display: flex;
+    justify-content: space-around;
+  }
+  

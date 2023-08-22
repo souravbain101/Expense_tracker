@@ -52,8 +52,8 @@ export default function Newhome() {
       if(data3[3].month===0){
         data3[3].month='No Data Found';
       }
-      console.log(data3[3].month)
-      console.log(data1[3]);
+      // console.log(data3[3].month)
+      // console.log(data1[3]);
       setdata(res.data)
       
       
@@ -61,7 +61,7 @@ export default function Newhome() {
 
     const GetrecentTransaction=async()=>{
       const res=await FetchTransaction(Gettoken());
-      console.log(res.data);
+      // console.log(res.data);
       setRecentdata(res.data)
     }
     
