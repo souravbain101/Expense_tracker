@@ -96,13 +96,23 @@ export const AddExpenseData=async(data,token)=>{
         console.log("error while calling the api in /expence/add",error);
     }
 }
+export const EditExpenseData=async(id,data,token)=>{
+    try {
+        const  headers= { authorization: `Bearer ${token}` }
+        console.log(headers);
+       return await axios.put(`${URL}/expence/edit/${id}`,data,{headers});
+      
+    } catch (error) {
+        console.log(`error while calling the api in /expence/edit/${id}`,error);
+    }
+}
 export const DeleteExpenseData=async(id,token)=>{
     try {
         const  headers= { authorization: `Bearer ${token}` }
        return await axios.delete(`${URL}/expence/delete/${id}`,{headers});
       
     } catch (error) {
-        console.log("error while calling the api in /expence/delete/${id}",error);
+        console.log(`error while calling the api in /expence/delete/${id}`,error);
     }
 }
 export const FetchAllExpences=async(token)=>{

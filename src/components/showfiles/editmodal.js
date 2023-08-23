@@ -3,8 +3,8 @@ import Box from "@mui/material/Box";
 import { Edit } from "@mui/icons-material";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { Button, TextField, MenuItem } from "@mui/material";
-import { DeleteExpenseData } from "../Api/axios";
+import { Button, TextField, MenuItem, Alert, Grid } from "@mui/material";
+import { EditExpenseData } from "../Api/axios";
 import { Gettoken } from "../Api/StoreToken/StoreToken";
 import "./em.css";
 const style = {
@@ -32,69 +32,114 @@ const currencies = [
   },
 ];
 const categoryit = [
-    {
-      value: "Food & Drinks",
-      label: "Food & Drinks",
-    },
-    {
-      value: "Entertainment",
-      label: "Entertainment",
-    },
-    {
-      value: "Rents",
-      label: "Rents",
-    },
-  ];
+  {
+    value: "Food & Drinks",
+    label: "Food & Drinks",
+  },
+  {
+    value: "Entertainment",
+    label: "Entertainment",
+  },
+  {
+    value: "Rents",
+    label: "Rents",
+  },
+];
 function EdModalpopup(props) {
+  const [error, seterror] = useState({
+    status: false,
+    msg: "",
+    type: "",
+  });
+  // function erroFunc(res) {
+  //   if (res.data.status === "success") {
+  //     seterror({ status: true, msg: res.data.message, type: "success" });
+  //   } else if (res.data.status === "failed") {
+  //     seterror({ status: true, msg: res.data.message, type: "error" });
+  //   }
+  //   setTimeout(() => {
+  //     seterror({ status: false });
+  //   }, 2000);
+  // }
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [Record, setRecord] = useState({ category: "", date: "", currency: "", amount: "" });
-  
+  const [Record, setRecord] = useState({ category: props.itemid.original.category, date: props.itemid.original.date, currency: props.itemid.original.currency, amount: props.itemid.original.amount });
+
   const handlechange = (event) => {
+    console.log(event.target.value);
     setRecord({ ...Record, [event.target.name]: event.target.value });
   };
   const handleEdit = async () => {
     console.log("edit");
-    console.log(props.itemid.original);
-    handleClose();
+    console.log(Record);
+    if (Record.amount !== "") {
+      // console.log(props.itemid.original._id);
+      const res = await EditExpenseData(props.itemid.original._id,Record,Gettoken());
+      console.log(res);
+      props.setedited(true);
+      handleClose();
+    } else {
+      seterror({ status: true, msg: "Amount can't be empty !", type: "error" });
+      setTimeout(() => {
+        seterror({ status: false });
+      }, 1800);
+    }
+  };
+  const preventPasteNegative = (e) => {
+    const clipboardData = e.clipboardData || e.clipboardData;
+    const pastedData = parseFloat(clipboardData.getData("text"));
+
+    if (pastedData < 0) {
+      e.preventDefault();
+    }
+  };
+  const preventMinus = (e) => {
+    if (e.charCode < 48) {
+      e.preventDefault();
+    }
   };
   return (
     <div>
       <Edit onClick={handleOpen} />
       <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
         <Box sx={style} className="edtmdlbdy">
+          <form>
+            <TextField required sx={{ mb: 3 }} fullWidth id="outlined-select-currency" select label="Category" defaultValue={Record.category} onChange={(e) => handlechange(e)} name="category">
+              {categoryit.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
 
-        <TextField required sx={{ mb: 3 }} fullWidth id="outlined-select-currency" select label="Category" defaultValue={props.itemid.original.category} >
-            {categoryit.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
+            <TextField required sx={{ mb: 3 }} fullWidth id="outlined-basic" type="date" label="Date" variant="outlined" value={Record.date} onChange={(e) => handlechange(e)} name="date" />
 
-          <TextField required sx={{ mb: 3 }} fullWidth id="outlined-basic" type="date" label="Date" variant="outlined" value={props.itemid.original.date} />
+            <TextField required sx={{ mb: 3 }} fullWidth id="outlined-select-currency" select label="Select" defaultValue={Record.currency} helperText="Please select your currency" onChange={(e) => handlechange(e)} name="currency">
+              {currencies.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
 
-          <TextField required sx={{ mb: 3 }} fullWidth id="outlined-select-currency" select label="Select" defaultValue={props.itemid.original.currency} helperText="Please select your currency">
-            {currencies.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-
-          <TextField required sx={{ mb: 3 }} fullWidth id="outlined-basic" label="Amount" variant="outlined" value={props.itemid.original.amount} />
-          <Typography sx={{ mb: 3 }} id="modal-modal-title" variant="h5" component="h2" className="fonty">
-            Do you want to save the data ?
-          </Typography>
-          <div className="btw">
-            <Button sx={{ bgcolor: "orange", mt: 1.5, ":hover": { bgcolor: "#AF5", color: "black" } }} variant="contained" onClick={handleEdit}>
-              yes
-            </Button>
-            <Button sx={{ bgcolor: "orange", mt: 1.5, ":hover": { bgcolor: "#AF5", color: "black" } }} variant="contained" onClick={handleClose}>
-              no
-            </Button>
-          </div>
+            <TextField required sx={{ mb: 3 }} fullWidth id="outlined-basic" label="Amount" variant="outlined" value={Record.amount} onChange={(e) => handlechange(e)} name="amount" onPaste={preventPasteNegative} onKeyPress={preventMinus} />
+            <Grid item xs={12} sx={{ mb: 3 }}>
+            {error.status ? <Alert severity={error.type}>{error.msg}</Alert> : ""}
+          </Grid>
+            <Typography sx={{ mb: 3 }} id="modal-modal-title" variant="h5" component="h2" className="fonty">
+              Do you want to save the data ?
+            </Typography>
+            <div className="bted">
+              <Button sx={{ bgcolor: "orange", mt: 1.5, ":hover": { bgcolor: "#AF5", color: "black" } }} variant="contained" onClick={handleEdit}>
+                yes
+              </Button>
+              <Button sx={{ bgcolor: "orange", mt: 1.5, ":hover": { bgcolor: "#AF5", color: "black" } }} variant="contained" onClick={handleClose}>
+                no
+              </Button>
+            </div>
+          </form>
         </Box>
       </Modal>
     </div>

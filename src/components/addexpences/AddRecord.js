@@ -45,8 +45,6 @@ export default function AddRecord() {
   }
   const handleclick = async (e) => {
     e.preventDefault();
-    console.log(Record.date);
-    // setRecord({ ...Record, [event.target.name]: event.target.value });
     if (Record.category !== "" && Record.data !== "" && Record.currency !== "" && Record.amount !== "") {
       const res = await AddExpenseData(Record,Gettoken());
       setRecord(Record.category="",Record.date="",Record.currency="",Record.amount="");

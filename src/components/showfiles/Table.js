@@ -14,18 +14,19 @@ const Example = () => {
   const data = [];
   const [mydata, setMydata] = useState(data);
   const [deleted, setdeleted] = useState(false);
+  const [edited, setedited] = useState(false);
   
 
   const GelAllDatas = async () => {
     const res = await FetchAllExpences(Gettoken());
     setMydata(res.data);
     setdeleted(false)
-    // console.log(res.data);
+    setedited(false)
   };
 
   useMemo(()=>{
     GelAllDatas();
-  },[deleted])
+  },[deleted,edited])
 
   const handleSaveRowEdits = async({exitEditingMode,row, values}) => {
     console.log("handleSaveRowEdits");
@@ -82,7 +83,7 @@ const Example = () => {
             <Box sx={{ display: "flex", gap: "1rem" }}>
               <Tooltip arrow placement="left" title="Edit">
                 <IconButton >
-                  <EdModalpopup itemid={row}/>
+                  <EdModalpopup itemid={row} setedited={setedited}/>
                 </IconButton>
               </Tooltip>
               <Tooltip arrow placement="right" title="Delete">
