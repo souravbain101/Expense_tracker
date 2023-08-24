@@ -51,33 +51,24 @@ function EdModalpopup(props) {
     msg: "",
     type: "",
   });
-  // function erroFunc(res) {
-  //   if (res.data.status === "success") {
-  //     seterror({ status: true, msg: res.data.message, type: "success" });
-  //   } else if (res.data.status === "failed") {
-  //     seterror({ status: true, msg: res.data.message, type: "error" });
-  //   }
-  //   setTimeout(() => {
-  //     seterror({ status: false });
-  //   }, 2000);
-  // }
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const [Record, setRecord] = useState({ category: props.itemid.original.category, date: props.itemid.original.date, currency: props.itemid.original.currency, amount: props.itemid.original.amount });
+  const handleClose = () => {
+    setRecord(reccopy);
+    setOpen(false);
+  };
+  const reccopy = { category: props.itemid.original.category, date: props.itemid.original.date, currency: props.itemid.original.currency, amount: props.itemid.original.amount }
+  const [Record, setRecord] = useState(reccopy);
 
   const handlechange = (event) => {
-    console.log(event.target.value);
     setRecord({ ...Record, [event.target.name]: event.target.value });
   };
   const handleEdit = async () => {
-    console.log("edit");
-    console.log(Record);
     if (Record.amount !== "") {
-      // console.log(props.itemid.original._id);
       const res = await EditExpenseData(props.itemid.original._id,Record,Gettoken());
-      console.log(res);
+      // console.log(res.data.editeddata);
+      // setRecord(res.data.editeddata)
       props.setedited(true);
       handleClose();
     } else {

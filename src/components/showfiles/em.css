@@ -2,8 +2,7 @@
 @media screen and (max-width: 600px) {
     .edtmdlbdy {
       width: 50% !important;
-      height: 45% !important;
-      top: 30% !important;
+      height: 75% !important;
       padding: 20px !important;
     }
     .fonty {
@@ -14,14 +13,14 @@
   @media screen and (min-width: 601px) and (max-width: 900px) {
     .edtmdlbdy {
       width: 50% !important;
-      height: 45% !important;
+      height: 75% !important;
       .btw{padding-top:20px;}
     }
   }
   @media screen and (min-width: 901px) {
     .edtmdlbdy {
       width: 38% !important;
-      height: 45% !important;
+      height: 75% !important;
     }
     .btw{padding-top:20px;}
   }

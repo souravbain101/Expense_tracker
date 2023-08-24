@@ -99,7 +99,6 @@ export const AddExpenseData=async(data,token)=>{
 export const EditExpenseData=async(id,data,token)=>{
     try {
         const  headers= { authorization: `Bearer ${token}` }
-        console.log(headers);
        return await axios.put(`${URL}/expence/edit/${id}`,data,{headers});
       
     } catch (error) {

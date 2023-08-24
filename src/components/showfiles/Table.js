@@ -4,7 +4,6 @@ import { FetchAllExpences} from "../Api/axios";
 import { Gettoken } from "../Api/StoreToken/StoreToken";
 import { useReactToPrint } from "react-to-print";
 import "./Table.css";
-import { Edit } from "@mui/icons-material";
 import {  Box, Button, IconButton, Tooltip } from "@mui/material";
 import Modalpopup from "./dltmodal"
 import EdModalpopup from "./editmodal";
@@ -27,16 +26,6 @@ const Example = () => {
   useMemo(()=>{
     GelAllDatas();
   },[deleted,edited])
-
-  const handleSaveRowEdits = async({exitEditingMode,row, values}) => {
-    console.log("handleSaveRowEdits");
-    console.log(mydata[row.index]);
-    console.log(mydata[row.index]._id);
-    exitEditingMode();
-  };
-  const handleCancelRowEdits = () => {
-    console.log("handleCancelRowEdits");
-  };
   
   // printing for pdf
   const componentRef = useRef();
