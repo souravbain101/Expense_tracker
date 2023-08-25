@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Box from "@mui/material/Box";
 import { Edit } from "@mui/icons-material";
 import Typography from "@mui/material/Typography";
@@ -53,13 +53,18 @@ function EdModalpopup(props) {
   });
 
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    setOpen(true);
+  }
   const handleClose = () => {
-    setRecord(reccopy);
     setOpen(false);
   };
-  const reccopy = { category: props.itemid.original.category, date: props.itemid.original.date, currency: props.itemid.original.currency, amount: props.itemid.original.amount }
-  const [Record, setRecord] = useState(reccopy);
+  
+  const [Record, setRecord] = useState({ category: props.itemid.original.category, date: props.itemid.original.date, currency: props.itemid.original.currency, amount: props.itemid.original.amount });
+
+  useEffect(() => {
+    setRecord({ category: props.itemid.original.category, date: props.itemid.original.date, currency: props.itemid.original.currency, amount: props.itemid.original.amount });
+  }, [props,open])
 
   const handlechange = (event) => {
     setRecord({ ...Record, [event.target.name]: event.target.value });
@@ -97,7 +102,7 @@ function EdModalpopup(props) {
       <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
         <Box sx={style} className="edtmdlbdy">
           <form>
-            <TextField required sx={{ mb: 3 }} fullWidth id="outlined-select-currency" select label="Category" defaultValue={Record.category} onChange={(e) => handlechange(e)} name="category">
+            <TextField required sx={{ mb: 3 }} fullWidth id="outlined-select-currency" select label="Category" value={Record.category} onChange={(e) => handlechange(e)} name="category">
               {categoryit.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
                   {option.label}
