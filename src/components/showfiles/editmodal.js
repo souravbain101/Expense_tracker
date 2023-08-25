@@ -71,7 +71,7 @@ function EdModalpopup(props) {
   };
   const handleEdit = async () => {
     if (Record.amount !== "") {
-      const res = await EditExpenseData(props.itemid.original._id,Record,Gettoken());
+       await EditExpenseData(props.itemid.original._id,Record,Gettoken());
       // console.log(res.data.editeddata);
       // setRecord(res.data.editeddata)
       props.setedited(true);

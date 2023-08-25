@@ -4,7 +4,7 @@ import { Gettoken, Removetoken } from '../Api/StoreToken/StoreToken'
 import { useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 import './profile.css'
-import sanu from '../../images/sanu.jpg'
+import sanu from '../../images/profile.jpg'
 import { Context } from '../../App';
 import { Grid } from '@mui/material'
 

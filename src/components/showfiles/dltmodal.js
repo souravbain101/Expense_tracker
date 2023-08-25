@@ -22,7 +22,7 @@ function Modalpopup(props) {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const handledelete=async()=>{
-        const res = await DeleteExpenseData(props.itemid.original._id,Gettoken());
+        await DeleteExpenseData(props.itemid.original._id,Gettoken());
         props.setdeleted(true);
         setOpen(false)
     }
