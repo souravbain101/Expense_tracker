@@ -6,6 +6,8 @@ import Modal from '@mui/material/Modal';
 import { Button } from '@mui/material';
 import {DeleteExpenseData} from "../Api/axios";
 import { Gettoken } from "../Api/StoreToken/StoreToken";
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import "./dm.css";
 const style = {
     position: 'absolute',
@@ -22,13 +24,28 @@ function Modalpopup(props) {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const handledelete=async()=>{
-        await DeleteExpenseData(props.itemid.original._id,Gettoken());
-        props.setdeleted(true);
+        const res=await DeleteExpenseData(props.itemid.original._id,Gettoken());
+        props.setdeleted(true);  
+        if (res.data.status==="success"){
+            toast.success("Deleted Successfully ", {
+                position: toast.POSITION.TOP_CENTER
+              });
+        }
+        else{
+            toast.error("Deletion Failed ", {
+                position: toast.POSITION.TOP_CENTER
+              });
+        }     
         setOpen(false)
+       
+        
+        
     }
     return (
         <div>
+            <ToastContainer/>
             <Delete onClick={handleOpen}/>
+            
             <Modal
                 open={open}
                 onClose={handleClose}

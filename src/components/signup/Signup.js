@@ -1,10 +1,12 @@
-import { Card,Alert,Button,CardContent, Grid, TextField, Box, FormControlLabel } from '@mui/material'
-import { useState } from 'react';
+import { Card,Button,CardContent, Grid, TextField, Box } from '@mui/material'
+
 import React from 'react'
 import './signup.css'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Checkbox from '@mui/material/Checkbox';
+
 import { register } from '../Api/axios';
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 // import { Storetoken } from '../Api/StoreToken/StoreToken';
 // import { useNavigate } from 'react-router-dom';
 
@@ -22,12 +24,7 @@ export default function Signup() {
       
       // const navigate=useNavigate();
 
-      const[error,seterror]=useState({
-        status:false,
-        msg:"",
-        type:""
-
-      })
+      
       const handlesubmit=async(e)=>{
         e.preventDefault();
         const data=new FormData(e.currentTarget);
@@ -36,16 +33,21 @@ export default function Signup() {
             email:data.get('email'),
             password:data.get('password'),
             password_confirmation:data.get('Confirm_Password'),
-            tc:data.get('tc'),
+            
         }
         
-        if (actualData.email && actualData.name && actualData.password && actualData.password_confirmation && actualData.tc!==null) {
+        if (actualData.email && actualData.name && actualData.password && actualData.password_confirmation) {
          if (actualData.password===actualData.password_confirmation) {
           if (actualData.password.length<8) {
-            seterror({status:true,msg:'Password must be 8 character',type:'error'})
+            // seterror({status:true,msg:'Password must be 8 character',type:'error'})
+            toast.warning("Password must be 8 character !", {
+              position: toast.POSITION.TOP_CENTER
+            });
           }
           else{         
           document.getElementById('signup_form').reset();
+          
+          
          
           const res=await register(actualData);
           
@@ -54,30 +56,44 @@ export default function Signup() {
            
             
             
-            seterror({status:true,msg:res.data.message,type:'success'})
+            // seterror({status:true,msg:res.data.message,type:'success'})
+            toast.success(res.data.message, {
+              position: toast.POSITION.TOP_CENTER
+            });
             // setTimeout(()=>{
             //  navigate('/dashboard')
            
             // },3000)
           }
           if (res.data.status==='failed') {
-            seterror({status:true,msg:res.data.message,type:'error'})
+            // seterror({status:true,msg:res.data.message,type:'error'})
+            toast.error(res.data.message, {
+              position: toast.POSITION.TOP_CENTER
+            });
           }         
           }
          }
          else{
-          seterror({status:true,msg:'Confirm Password does not match',type:'error'})
+          // seterror({status:true,msg:'Confirm Password does not match',type:'error'})
+          toast.warning('Confirm Password does not match !', {
+            position: toast.POSITION.TOP_CENTER
+          });
          }
         }
         else{
-          seterror({status:true,msg:'All Fields are Required',type:'error'})
+          // seterror({status:true,msg:'All Fields are Required',type:'error'})
+          toast.warning('All Fields are Required !', {
+            position: toast.POSITION.TOP_CENTER
+          });
         }
 
       }
+      
 
 
   return (
     <div>
+    <ToastContainer/>
      <ThemeProvider theme={theme}>
      <Box component='form' id='signup_form' onSubmit={handlesubmit}>
       <Card className='sresponsive' style={{ width: '90%', margin: "5% auto" }}>
@@ -99,16 +115,12 @@ export default function Signup() {
             <Grid item xs={12}>
             <TextField color="primary" type='password' label='Confirm Password' name='Confirm_Password' variant="outlined" fullWidth   />
             </Grid>
-            <Grid item xs={12}>
-            <FormControlLabel control={<Checkbox value='true' name='tc' id='tc'  />} label='Terms and Conditions'/>
-            </Grid>
+            
             <Grid item xs={12} >
             <Button style={{width:'40%'}} type='submit' variant='contained' color='primary' sx={{color:'white'}}  >Register</Button>
             </Grid>
 
-            <Grid item xs={12}>
-            {error.status?<Alert severity={error.type}>{error.msg}</Alert>:''}
-            </Grid>
+           
 
             </Grid>
         </CardContent>

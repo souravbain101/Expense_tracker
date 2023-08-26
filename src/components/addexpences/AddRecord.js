@@ -1,4 +1,4 @@
-import { CardContent, Alert, Grid, TextField, Card, Box } from "@mui/material";
+import { CardContent, Grid, TextField, Card, Box } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -10,6 +10,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "./AddRecord.css";
 import { AddExpenseData } from "../Api/axios";
 import { Gettoken } from "../Api/StoreToken/StoreToken";
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const theme = createTheme({
   palette: {
@@ -20,11 +22,7 @@ const theme = createTheme({
 });
 
 export default function AddRecord() {
-  const [error, seterror] = useState({
-    status: false,
-    msg: "",
-    type: "",
-  });
+  
 
   const [Record, setRecord] = useState({ category: "", date: "", currency: "", amount: "" });
   
@@ -35,13 +33,17 @@ export default function AddRecord() {
   };
   function erroFunc(res) {
     if (res.data.status === "success") {
-      seterror({ status: true, msg: res.data.message, type: "success" });
+     
+      toast.success(res.data.message, {
+        position: toast.POSITION.TOP_CENTER
+      });
     } else if (res.data.status === "failed") {
-      seterror({ status: true, msg: res.data.message, type: "error" });
+   
+      toast.error(res.data.message, {
+        position: toast.POSITION.TOP_CENTER
+      });
     }
-    setTimeout(() => {
-      seterror({ status: false });
-    }, 2000);
+   
   }
   const handleclick = async (e) => {
     e.preventDefault();
@@ -50,10 +52,11 @@ export default function AddRecord() {
       setRecord(Record.category="",Record.date="",Record.currency="",Record.amount="");
       erroFunc(res);
     } else {
-      seterror({ status: true, msg: "All Fields are Required", type: "error" });
-      setTimeout(() => {
-        seterror({ status: false });
-      }, 1800);
+     
+      toast.warning("All Fields are Required !", {
+        position: toast.POSITION.TOP_CENTER
+      });
+      
     }
   };
   //  for neg value typed and neg value to be pasted
@@ -71,9 +74,11 @@ export default function AddRecord() {
       e.preventDefault();
     }
   };
-
+ 
+ 
   return (
     <div>
+    <ToastContainer/>
       <ThemeProvider theme={theme}>
       <Box component='form' id='signup_form'>
         <Card style={{ width: "50%", margin: "10% auto" }} className="responsive">
@@ -97,7 +102,7 @@ export default function AddRecord() {
               </Grid>
 
               <Grid item xs={12}>
-                <TextField color="primary" type="date" name="date" variant="outlined" fullWidth required onChange={handlechange} />
+                <TextField color="primary" label="date"  focused type="date" name="date"  variant="outlined" fullWidth required onChange={handlechange} />
               </Grid>
 
               <Grid item xs={12} sm={6}>
@@ -122,9 +127,7 @@ export default function AddRecord() {
                   <AddIcon />
                 </Fab>
               </Grid>
-              <Grid item xs={12}>
-                {error.status ? <Alert severity={error.type}>{error.msg}</Alert> : ""}
-              </Grid>
+             
             </Grid>
           </CardContent>
         </Card>
