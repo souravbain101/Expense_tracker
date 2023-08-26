@@ -3,9 +3,11 @@ import Box from "@mui/material/Box";
 import { Edit } from "@mui/icons-material";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { Button, TextField, MenuItem, Alert, Grid } from "@mui/material";
+import { Button, TextField, MenuItem} from "@mui/material";
 import { EditExpenseData } from "../Api/axios";
 import { Gettoken } from "../Api/StoreToken/StoreToken";
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import "./em.css";
 const style = {
   position: "absolute",
@@ -46,11 +48,7 @@ const categoryit = [
   },
 ];
 function EdModalpopup(props) {
-  const [error, seterror] = useState({
-    status: false,
-    msg: "",
-    type: "",
-  });
+ 
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
@@ -71,16 +69,27 @@ function EdModalpopup(props) {
   };
   const handleEdit = async () => {
     if (Record.amount !== "") {
-       await EditExpenseData(props.itemid.original._id,Record,Gettoken());
+       const res=await EditExpenseData(props.itemid.original._id,Record,Gettoken());
       // console.log(res.data.editeddata);
       // setRecord(res.data.editeddata)
       props.setedited(true);
+      if(res.data.status==="success"){
+        toast.success("Updated Successfully", {
+          position: toast.POSITION.TOP_CENTER
+        });
+      }
+      else{
+        toast.error("Edit Failed ", {
+          position: toast.POSITION.TOP_CENTER
+        });
+      }
       handleClose();
+      
     } else {
-      seterror({ status: true, msg: "Amount can't be empty !", type: "error" });
-      setTimeout(() => {
-        seterror({ status: false });
-      }, 1800);
+      
+      toast.warning("Amount can't be empty !", {
+        position: toast.POSITION.TOP_CENTER
+      });
     }
   };
   const preventPasteNegative = (e) => {
@@ -98,6 +107,7 @@ function EdModalpopup(props) {
   };
   return (
     <div>
+    <ToastContainer/>
       <Edit onClick={handleOpen} />
       <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
         <Box sx={style} className="edtmdlbdy">
@@ -121,9 +131,7 @@ function EdModalpopup(props) {
             </TextField>
 
             <TextField required sx={{ mb: 3 }} fullWidth id="outlined-basic" label="Amount" variant="outlined" value={Record.amount} onChange={(e) => handlechange(e)} name="amount" onPaste={preventPasteNegative} onKeyPress={preventMinus} />
-            <Grid item xs={12} sx={{ mb: 3 }}>
-            {error.status ? <Alert severity={error.type}>{error.msg}</Alert> : ""}
-          </Grid>
+            
             <Typography sx={{ mb: 3 }} id="modal-modal-title" variant="h5" component="h2" className="fonty">
               Do you want to save the data ?
             </Typography>
