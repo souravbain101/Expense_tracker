@@ -1,24 +1,40 @@
 import { CardContent, Alert, Grid, TextField, Card, Box } from "@mui/material";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import Fab from "@mui/material/Fab";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "./AddRecord.css";
 import { AddExpenseData } from "../Api/axios";
 import { Gettoken } from "../Api/StoreToken/StoreToken";
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#FFA500",
-    },
+const currencies = [
+  {
+    value: "INR",
+    label: "₹ - INR",
   },
-});
-
+  {
+    value: "USD",
+    label: "$ - USD",
+  },
+  {
+    value: "EUR",
+    label: "€ - EUR",
+  },
+];
+const categoryit = [
+  {
+    value: "Food & Drinks",
+    label: "Food & Drinks",
+  },
+  {
+    value: "Entertainment",
+    label: "Entertainment",
+  },
+  {
+    value: "Rents",
+    label: "Rents",
+  },
+];
 export default function AddRecord() {
   const [error, seterror] = useState({
     status: false,
@@ -27,10 +43,8 @@ export default function AddRecord() {
   });
 
   const [Record, setRecord] = useState({ category: "", date: "", currency: "", amount: "" });
-  
+
   const handlechange = (event) => {
-    console.log(event);
-    console.log("event");
     setRecord({ ...Record, [event.target.name]: event.target.value });
   };
   function erroFunc(res) {
@@ -46,8 +60,8 @@ export default function AddRecord() {
   const handleclick = async (e) => {
     e.preventDefault();
     if (Record.category !== "" && Record.data !== "" && Record.currency !== "" && Record.amount !== "") {
-      const res = await AddExpenseData(Record,Gettoken());
-      setRecord(Record.category="",Record.date="",Record.currency="",Record.amount="");
+      const res = await AddExpenseData(Record, Gettoken());
+      setRecord({ category: "", date: "", currency: "", amount: "" });
       erroFunc(res);
     } else {
       seterror({ status: true, msg: "All Fields are Required", type: "error" });
@@ -74,8 +88,7 @@ export default function AddRecord() {
 
   return (
     <div>
-      <ThemeProvider theme={theme}>
-      <Box component='form' id='signup_form'>
+      <Box component="form" id="signup_form">
         <Card style={{ width: "50%", margin: "10% auto" }} className="responsive">
           <CardContent style={{ textAlign: "center" }}>
             <h2 className="addexp" style={{ color: "#FFA500" }}>
@@ -84,41 +97,36 @@ export default function AddRecord() {
 
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                <FormControl required fullWidth>
-                  <InputLabel id="demo-select-small" style={{ background: "white" }}>
-                    Category
-                  </InputLabel>
-                  <Select labelId="demo-select-small" id="demo-select-small" name="category" defaultValue="" onChange={handlechange}>
-                    <MenuItem value={"Food & Drinks"}>Food & Drinks</MenuItem>
-                    <MenuItem value={"Entertainment"}>Entertainment</MenuItem>
-                    <MenuItem value={"Rents"}>Rents</MenuItem>
-                  </Select>
-                </FormControl>
+                <TextField required fullWidth id="outlined-select-currency" select label="Category" helperText="Please select category" value={Record.category} onChange={(e) => handlechange(e)} name="category">
+                  {categoryit.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
               </Grid>
 
               <Grid item xs={12}>
-                <TextField color="primary" type="date" name="date" variant="outlined" fullWidth required onChange={handlechange} />
+              <TextField helperText="Please select date" fullWidth id="outlined-basic" type="date" variant="outlined" value={Record.date} onChange={(e) => handlechange(e)} name="date" />
               </Grid>
 
               <Grid item xs={12} sm={6}>
-                <FormControl required fullWidth>
-                  <InputLabel id="demo-select-small" style={{ background: "white" }}>
-                    Currency
-                  </InputLabel>
-                  <Select labelId="demo-select-small" id="demo-select-small" name="currency" onChange={handlechange} defaultValue="">
-                    <MenuItem value={"INR"}>INR</MenuItem>
-                    <MenuItem value={"EUR"}>EUR</MenuItem>
-                    <MenuItem value={"USD"}>USD</MenuItem>
-                  </Select>
-                </FormControl>
+              <TextField required fullWidth id="outlined-select-currency" 
+              label="Select" select defaultValue="Select" value={Record.currency} helperText="Please select your currency" onChange={(e) => handlechange(e)} name="currency">
+              {currencies.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
               </Grid>
 
               <Grid item xs={12} sm={6}>
-                <TextField color="primary" type="number" label="Amount" name="amount" variant="outlined" fullWidth required onChange={handlechange} onPaste={preventPasteNegative} onKeyPress={preventMinus} />
+              <TextField required fullWidth id="outlined-basic" label="Amount" variant="outlined" value={Record.amount} helperText="Please enter total amount" onChange={(e) => handlechange(e)} name="amount" onPaste={preventPasteNegative} onKeyPress={preventMinus} />
               </Grid>
 
               <Grid item xs={12} sx={{ mt: "15px" }}>
-                <Fab disabled={false} color="primary" aria-label="add" onClick={handleclick}>
+                <Fab disabled={false} sx={{ bgcolor: "orange", mt: 1.5, ":hover": { bgcolor: "#AF5", color: "black" } }} aria-label="add" onClick={handleclick}>
                   <AddIcon />
                 </Fab>
               </Grid>
@@ -128,8 +136,7 @@ export default function AddRecord() {
             </Grid>
           </CardContent>
         </Card>
-        </Box>
-      </ThemeProvider>
+      </Box>
     </div>
   );
 }
