@@ -11,10 +11,12 @@ import { Fetchlastmonthdata } from "../Api/axios";
 import { FetchTransaction } from "../Api/axios";
 // import { green } from "@mui/material/colors";
 import {useTypewriter,Cursor} from 'react-simple-typewriter'
+import LinearIndeterminate from "../spinner/spinner";
 
 
 
 export default function Newhome() {
+  const [loading, setloading] = useState(false);
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
 
@@ -36,8 +38,9 @@ export default function Newhome() {
     const[Recentdata,setRecentdata]=useState(null);
 
     const GetlastmonthsData=async()=>{
+      setloading(true)
       const res=await Fetchlastmonthdata(Gettoken());
-      
+      setloading(false)
       
       
       // console.log(res.data);
@@ -65,14 +68,17 @@ export default function Newhome() {
     }
 
     const GetrecentTransaction=async()=>{
+      setloading(true)
       const res=await FetchTransaction(Gettoken());
       // console.log(res.data);
+      setloading(false)
       setRecentdata(res.data)
     }
     
 
   return (
     <div>
+    {loading && <LinearIndeterminate/>}
 
     <div style={{margin:'0 1em 0 1em'}}>
 

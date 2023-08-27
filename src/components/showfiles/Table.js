@@ -7,6 +7,7 @@ import "./Table.css";
 import {  Box, Button, IconButton, Tooltip } from "@mui/material";
 import Modalpopup from "./dltmodal"
 import EdModalpopup from "./editmodal";
+import LinearIndeterminate from "../spinner/spinner";
 //nested data is ok, see accessorKeys in ColumnDef below
 const Example = () => {
 
@@ -14,11 +15,13 @@ const Example = () => {
   const [mydata, setMydata] = useState(data);
   const [deleted, setdeleted] = useState(false);
   const [edited, setedited] = useState(false);
-  
+  const [loading, setloading] = useState(false);
 
   const GelAllDatas = async () => {
+    setloading(true)
     const res = await FetchAllExpences(Gettoken());
-    setMydata(res.data);
+    setloading(false)
+    setMydata(res.data)
     setdeleted(false)
     setedited(false)
   };
@@ -62,6 +65,7 @@ const Example = () => {
 
   return (
     <>
+      {loading && <LinearIndeterminate/>}
       <div ref={componentRef}>
         <MaterialReactTable
           columns={columns}
