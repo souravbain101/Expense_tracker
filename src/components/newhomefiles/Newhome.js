@@ -10,13 +10,18 @@ import { Gettoken } from "../Api/StoreToken/StoreToken";
 import { Fetchlastmonthdata } from "../Api/axios";
 import { FetchTransaction } from "../Api/axios";
 // import { green } from "@mui/material/colors";
-
+import {useTypewriter,Cursor} from 'react-simple-typewriter'
 
 
 
 export default function Newhome() {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
+
+    const[text]=useTypewriter({
+      words:['Welcome to Econimizing','It is Dashboard'],
+      loop:{},
+    });
     
     useEffect(()=>{
       GetlastmonthsData();
@@ -74,7 +79,7 @@ export default function Newhome() {
 
     <Box  style={{margin:'1em 0 0 0'}} >
         <Typography className="title" fontWeight={600} fontSize={24}sx={{color:colors.orangeAccent[500]}}
-        >Welcome To Your Home</Typography>
+        ><span>{text}</span><Cursor/></Typography>
         
       </Box>
 

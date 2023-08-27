@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useRef } from "react";
+import React, { useMemo, useState, useRef,useEffect } from "react";
 import MaterialReactTable from "material-react-table";
 import { FetchAllExpences} from "../Api/axios";
 import { Gettoken } from "../Api/StoreToken/StoreToken";
@@ -23,7 +23,7 @@ const Example = () => {
     setedited(false)
   };
 
-  useMemo(()=>{
+  useEffect(()=>{
     GelAllDatas();
   },[deleted,edited])
   

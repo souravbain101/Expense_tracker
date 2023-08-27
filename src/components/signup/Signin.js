@@ -1,11 +1,13 @@
-import React, { useState,useContext } from 'react'
-import { Alert, Box, Button, Card, CardContent, Grid, TextField } from '@mui/material'
+import React, { useContext } from 'react'
+import {  Box, Button, Card, CardContent, Grid, TextField } from '@mui/material'
 import { NavLink, useNavigate } from 'react-router-dom'
 import './signin.css'
 import { Storetoken } from '../Api/StoreToken/StoreToken'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Login } from '../Api/axios';
 import { Context } from '../../App';
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Signin() {
     const theme = createTheme({
@@ -17,12 +19,12 @@ export default function Signin() {
       });
       const context=useContext(Context);
       const navigate=useNavigate();
-      const[error,seterror]=useState({
-        status:false,
-        msg:"",
-        type:""
+      // const[error,seterror]=useState({
+      //   status:false,
+      //   msg:"",
+      //   type:""
 
-      })
+      // })
 
       const handlesubmit=async(e)=>{
         e.preventDefault();
@@ -33,7 +35,12 @@ export default function Signin() {
         }
         if (actualData.email && actualData.password) {
           if (actualData.password.length<8) {
-            seterror({status:true,msg:'Password must be 8 character',type:'error'})
+            // seterror({status:true,msg:'Password must be 8 character',type:'error'})
+           
+            toast.warning("Password must be 8 character !", {
+              position: toast.POSITION.TOP_CENTER
+            });
+      
           }
           else{
             
@@ -44,14 +51,20 @@ export default function Signin() {
             Storetoken('access_token',res.data.token.access_token);
             Storetoken('refresh_token',res.data.token.refresh_token);
             
-            seterror({status:true,msg:res.data.message,type:'success'})
+            // seterror({status:true,msg:res.data.message,type:'success'})
+            toast.success(res.data.message, {
+              position: toast.POSITION.TOP_CENTER
+            });
             setTimeout(()=>{
               context.setauthenticated(true);
               navigate('/dashboard')
             },3000)
           }
           if (res.data.status==="failed") {
-            seterror({status:true,msg:res.data.message,type:'error'})
+            // seterror({status:true,msg:res.data.message,type:'error'})
+            toast.error(res.data.message, {
+              position: toast.POSITION.TOP_CENTER
+            });
           }
           
 
@@ -61,13 +74,17 @@ export default function Signin() {
           }
         }
         else{
-          seterror({status:true,msg:'All Fields are Required',type:'error'})
+          // seterror({status:true,msg:'All Fields are Required',type:'error'})
+          toast.warning('All Fields are Required', {
+            position: toast.POSITION.TOP_CENTER
+          });
         }
         
         
       }
   return (
     <div>
+    <ToastContainer/>
      <ThemeProvider theme={theme}>
      <Box component='form' id='login-form' onSubmit={handlesubmit}>
       <Card className='logresponsive' style={{ width:'90%',  margin: "5% auto" }}>
@@ -92,9 +109,9 @@ export default function Signin() {
             <NavLink to='/forgetpassword'>Forget Password ?</NavLink>
             </Box>
 
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
             {error.status?<Alert severity={error.type}>{error.msg}</Alert>:''}
-            </Grid>
+            </Grid> */}
             
             
             </Grid>

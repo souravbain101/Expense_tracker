@@ -1,4 +1,4 @@
-import { CardContent, Alert, Grid, TextField, Card, Box } from "@mui/material";
+import { CardContent, Grid, TextField, Card, Box } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
@@ -6,6 +6,8 @@ import Fab from "@mui/material/Fab";
 import "./AddRecord.css";
 import { AddExpenseData } from "../Api/axios";
 import { Gettoken } from "../Api/StoreToken/StoreToken";
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const currencies = [
   {
@@ -36,11 +38,7 @@ const categoryit = [
   },
 ];
 export default function AddRecord() {
-  const [error, seterror] = useState({
-    status: false,
-    msg: "",
-    type: "",
-  });
+  
 
   const [Record, setRecord] = useState({ category: "", date: "", currency: "", amount: "" });
 
@@ -49,13 +47,17 @@ export default function AddRecord() {
   };
   function erroFunc(res) {
     if (res.data.status === "success") {
-      seterror({ status: true, msg: res.data.message, type: "success" });
+     
+      toast.success(res.data.message, {
+        position: toast.POSITION.TOP_CENTER,autoClose:1800
+      });
     } else if (res.data.status === "failed") {
-      seterror({ status: true, msg: res.data.message, type: "error" });
+   
+      toast.error(res.data.message, {
+        position: toast.POSITION.TOP_CENTER,autoClose:1800
+      });
     }
-    setTimeout(() => {
-      seterror({ status: false });
-    }, 2000);
+   
   }
   const handleclick = async (e) => {
     e.preventDefault();
@@ -64,10 +66,11 @@ export default function AddRecord() {
       setRecord({ category: "", date: "", currency: "", amount: "" });
       erroFunc(res);
     } else {
-      seterror({ status: true, msg: "All Fields are Required", type: "error" });
-      setTimeout(() => {
-        seterror({ status: false });
-      }, 1800);
+     
+      toast.warning("All Fields are Required !", {
+        position: toast.POSITION.TOP_CENTER,autoClose:1800
+      });
+      
     }
   };
   //  for neg value typed and neg value to be pasted
@@ -85,9 +88,11 @@ export default function AddRecord() {
       e.preventDefault();
     }
   };
-
+ 
+ 
   return (
     <div>
+    <ToastContainer/>
       <Box component="form" id="signup_form">
         <Card style={{ width: "50%", margin: "10% auto" }} className="responsive">
           <CardContent style={{ textAlign: "center" }}>
@@ -130,9 +135,7 @@ export default function AddRecord() {
                   <AddIcon />
                 </Fab>
               </Grid>
-              <Grid item xs={12}>
-                {error.status ? <Alert severity={error.type}>{error.msg}</Alert> : ""}
-              </Grid>
+             
             </Grid>
           </CardContent>
         </Card>
