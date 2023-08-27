@@ -9,13 +9,12 @@ import Modalpopup from "./dltmodal"
 import EdModalpopup from "./editmodal";
 import LinearIndeterminate from "../spinner/spinner";
 //nested data is ok, see accessorKeys in ColumnDef below
-const Example = () => {
+const Example = ({setloading}) => {
 
   const data = [];
   const [mydata, setMydata] = useState(data);
   const [deleted, setdeleted] = useState(false);
   const [edited, setedited] = useState(false);
-  const [loading, setloading] = useState(false);
 
   const GelAllDatas = async () => {
     setloading(true)
@@ -65,7 +64,6 @@ const Example = () => {
 
   return (
     <>
-      {loading && <LinearIndeterminate/>}
       <div ref={componentRef}>
         <MaterialReactTable
           columns={columns}
