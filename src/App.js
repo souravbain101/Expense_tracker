@@ -15,6 +15,9 @@ import Verifytoken from './components/Api/StoreToken/Verifytoken';
 import { Refresh_token_api } from './components/Api/axios';
 import { Storetoken } from './components/Api/StoreToken/StoreToken';
 
+import Signup from './components/signup/Signup';
+import Signin from './components/signup/Signin';
+
 
 export const Context=createContext();
 function App() {
@@ -133,6 +136,8 @@ function App() {
     <Routes>
     <Route path='/home' element={<Home /> } />
     <Route path='/' element={<Home /> } />
+    <Route path='/signup' element={<Signup/> } />
+    <Route path='/signin' element={<Signin/> } />
       
       <Route path='/forgetpassword' element={<ForgatePassword/>} />
       <Route path='/api/user/reset/:id/:token' element={<Resetpassword/>} />

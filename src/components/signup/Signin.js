@@ -7,6 +7,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Login } from '../Api/axios';
 import { Context } from '../../App';
 import { toast, ToastContainer } from 'react-toastify';
+import { FaKey } from 'react-icons/fa'
+
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Signin() {
@@ -87,9 +89,9 @@ export default function Signin() {
     <ToastContainer/>
      <ThemeProvider theme={theme}>
      <Box component='form' id='login-form' onSubmit={handlesubmit}>
-      <Card className='logresponsive' style={{ width:'90%',  margin: "5% auto" }}>
+      <Card className='logresponsive' style={{   margin: "10% auto" }}>
         <CardContent style={{ textAlign: 'center' }}>
-        <h2  style={{ color: "#FFA500"  }}>Login</h2>
+        <h2  style={{ color: "#FFA500"  }}><FaKey/>  Login</h2>
             <Grid container spacing={2}>
            
 
