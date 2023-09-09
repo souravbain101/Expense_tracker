@@ -38,26 +38,7 @@ export default function TransitionsModal() {
   return (
     <div>
         <Button className='secondary-button' onClick={handlesignup} style={{backgroundColor: "#00bfa5"}} sx={{ mr: 3 }} variant="contained" color="primary">Sign up<FaSignInAlt/></Button>
-      {/* <Modal
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        slots={{ backdrop: Backdrop }}
-        slotProps={{
-          backdrop: {
-            timeout: 500,
-          },
-        }}
-        
-      >
       
-        <Fade in={open}>
-          <Box className ='smodal' sx={style}>
-          <Button onClick={handleClose} variant='outlined' sx={{color:'white',borderColor:'#FFA500'}} ><AiOutlineClose/></Button>
-           <Signup />
-          </Box>
-        </Fade>
-      </Modal> */}
     </div>
   );
 }
