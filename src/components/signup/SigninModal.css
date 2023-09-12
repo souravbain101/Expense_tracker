@@ -1,4 +1,4 @@
-/* @media screen and (max-width:600px){
+@media screen and (max-width:600px){
     .lmodal{
      width: 80% !important;
      height: 85% !important;
@@ -15,7 +15,7 @@
      width: 65% !important;
      height: 85% !important;
     }
- } */
+ }
 
 
 

@@ -3,6 +3,14 @@
         width: 80% !important;
         
     }
+    .custom-toast-container {
+        position: fixed; /* Use fixed positioning to control toast placement */
+        /* top: 20px; Adjust the top position as needed */
+        top: -8%;
+        /* right: -5px; Adjust the right position as needed */
+        left: -13%;
+        /* Additional styles as needed */
+      }
 }
 
 @media screen and (min-width: 400px){
@@ -11,3 +19,5 @@
        
     }
 }
+
+    

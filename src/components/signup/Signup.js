@@ -92,8 +92,9 @@ export default function Signup() {
 
 
   return (
+    <>
+    <ToastContainer className="custom-toast-container"/>
     <div>
-    <ToastContainer/>
      <ThemeProvider theme={theme}>
      <Box component='form' id='signup_form' onSubmit={handlesubmit}>
       <Card className='sresponsive' style={{ width: '90%', margin: "5% auto" }}>
@@ -117,7 +118,7 @@ export default function Signup() {
             </Grid>
             
             <Grid item xs={12} >
-            <Button style={{width:'40%'}} type='submit' variant='contained' color='primary' sx={{color:'white'}}  >Register</Button>
+            <Button style={{width:'80%'}} type='submit' variant='contained' color='primary' sx={{color:'white'}}  >Register</Button>
             </Grid>
 
            
@@ -128,5 +129,6 @@ export default function Signup() {
       </Box>
       </ThemeProvider>
     </div>
+    </>
   )
 }

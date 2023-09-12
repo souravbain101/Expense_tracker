@@ -1,3 +1,13 @@
+@media screen and (max-width: 481) {
+    .custom-toast-container {
+        position: fixed; /* Use fixed positioning to control toast placement */
+        /* top: 20px; Adjust the top position as needed */
+        top: -9%;
+        /* right: -5px; Adjust the right position as needed */
+        left: -15%;
+        /* Additional styles as needed */
+      }
+  }
 @media screen and (min-width: 900px){
     .sresponsive{
         width: 60% !important;
