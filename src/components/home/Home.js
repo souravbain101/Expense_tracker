@@ -12,7 +12,7 @@ import { Grid } from '@mui/material';
 const Home = () => {
 
   const[text]=useTypewriter({
-    words:['Us.','Econimizing.'],
+    words:['Us.','Economizing.'],
     loop:{},
   });
   

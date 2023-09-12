@@ -140,7 +140,7 @@ function App() {
     <Route path='/signin' element={<Signin/> } />
       
       <Route path='/forgetpassword' element={<ForgatePassword/>} />
-      <Route path='/api/user/reset/:id/:token' element={<Resetpassword/>} />
+      <Route path='/reset-password/:id/:token' element={<Resetpassword/>} />
       
       <Route path='*' element={<h1>404 Page not found !!</h1>}/>
     </Routes>
