@@ -1,5 +1,13 @@
-@media screen and (min-width: 900px){
+@media screen and (max-width: 400px){
     .logresponsive{
-        width: 60% !important;
+        width: 80% !important;
+        
+    }
+}
+
+@media screen and (min-width: 400px){
+    .logresponsive{
+        width: 50% !important;
+       
     }
 }

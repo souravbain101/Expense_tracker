@@ -11,9 +11,13 @@ import Resetpassword from "./components/signup/ForgetPassword/Resetpassword";
 import { Get_Refresh_token, Gettoken } from "./components/Api/StoreToken/StoreToken";
 import Profile from "./components/Profile/Profile";
 import jwt_decode from "jwt-decode";
-import Verifytoken from "./components/Api/StoreToken/Verifytoken";
-import { Refresh_token_api } from "./components/Api/axios";
-import { Storetoken } from "./components/Api/StoreToken/StoreToken";
+import Verifytoken from './components/Api/StoreToken/Verifytoken';
+import { Refresh_token_api } from './components/Api/axios';
+import { Storetoken } from './components/Api/StoreToken/StoreToken';
+
+import Signup from './components/signup/Signup';
+import Signin from './components/signup/Signin';
+
 
 export const Context = createContext();
 function App() {
@@ -108,20 +112,23 @@ function App() {
   }
   return (
     <>
-      <Context.Provider value={provide}>
-        {isauthenticated ? <Navbar pages={pages} profile={true} dark={false} /> : <Navbar pages={pages1} profile={false} dark={false} />}
-
-        <Routes>
-          <Route path="/home" element={<Home />} />
-          <Route path="/" element={<Home />} />
-
-          <Route path="/forgetpassword" element={<ForgatePassword />} />
-          <Route path="/api/user/reset/:id/:token" element={<Resetpassword />} />
-
-          <Route path="*" element={<h1>404 Page not found !!</h1>} />
-        </Routes>
-        {/* <Footer/> */}
-      </Context.Provider>
+   <Context.Provider value={provide}>
+    {isauthenticated?<Navbar pages={pages} profile={true}  dark={false}/>:<Navbar pages={pages1} profile={false} dark={false}/>}
+    
+    <Routes>
+    <Route path='/home' element={<Home /> } />
+    <Route path='/' element={<Home /> } />
+    <Route path='/signup' element={<Signup/> } />
+    <Route path='/signin' element={<Signin/> } />
+      
+      <Route path='/forgetpassword' element={<ForgatePassword/>} />
+      <Route path='/reset-password/:id/:token' element={<Resetpassword/>} />
+      
+      <Route path='*' element={<h1>404 Page not found !!</h1>}/>
+    </Routes>
+    {/* <Footer/> */}
+    
+    </Context.Provider>
     </>
   );
 }
