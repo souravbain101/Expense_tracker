@@ -3,10 +3,10 @@ import axios from "axios";
 // // const URL='https://exp-backend-rn98.onrender.com';
 
 // this is local host link
-// const URL='http://localhost:8000'
+const URL='http://localhost:8000'
 
 // this is server link
-const URL='https://backend-d5zl.onrender.com';
+// const URL='https://backend-d5zl.onrender.com';
 
 export const register=async(data)=>{
     try {
