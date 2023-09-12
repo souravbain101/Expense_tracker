@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import { FaSignInAlt } from "react-icons/fa";
  import { AiOutlineClose } from "react-icons/ai";
 import './SigninModal.css'
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 import Signin from './Signin';
 
@@ -28,14 +28,14 @@ const style = {
 };
 
 export default function TransitionsModal() {
-  const navigate=useNavigate();
+  // const navigate=useNavigate();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handlesignin=()=>{
-    navigate("/signin");
-  }
+  // const handlesignin=()=>{
+  //   navigate("/signin");
+  // }
 
   return (
     <div>

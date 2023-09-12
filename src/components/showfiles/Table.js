@@ -7,7 +7,6 @@ import "./Table.css";
 import {  Box, Button, IconButton, Tooltip } from "@mui/material";
 import Modalpopup from "./dltmodal"
 import EdModalpopup from "./editmodal";
-import LinearIndeterminate from "../spinner/spinner";
 //nested data is ok, see accessorKeys in ColumnDef below
 const Example = ({setloading}) => {
 

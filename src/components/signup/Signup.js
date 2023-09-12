@@ -118,7 +118,7 @@ export default function Signup() {
             </Grid>
             
             <Grid item xs={12} >
-            <Button style={{width:'80%'}} type='submit' variant='contained' color='primary' sx={{color:'white'}}  >Register</Button>
+            <Button style={{width:'60%'}} type='submit' variant='contained' color='primary' sx={{color:'white'}}  >Register</Button>
             </Grid>
 
            

@@ -10,7 +10,7 @@ import { FaSignInAlt } from "react-icons/fa";
  import { AiOutlineClose } from "react-icons/ai";
 import './SignupModal.css'
 import Signup from './Signup';
-import {  useNavigate } from 'react-router-dom';
+// import {  useNavigate } from 'react-router-dom';
 
 
 const style = {
@@ -27,13 +27,13 @@ const style = {
 };
 
 export default function TransitionsModal() {
-  const navigate=useNavigate();
+  // const navigate=useNavigate();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const handlesignup=()=>{
-    navigate("/signup");
-  }
+  // const handlesignup=()=>{
+  //   navigate("/signup");
+  // }
 // console.log('hi');
   return (
     <div>
