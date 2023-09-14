@@ -13,7 +13,7 @@ import Sanupic from "../../images/profile.jpg";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
+// import AdbIcon from "@mui/icons-material/Adb";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 // import { useEffect } from "react";
@@ -96,6 +96,7 @@ function Navbar(props) {
                 onClose={handleCloseNavMenu}
                 sx={{
                   display: { xs: "block", md: "none" },
+                  
                 }}
               >
                 {props.pages.map((page) => (
@@ -109,7 +110,9 @@ function Navbar(props) {
                 ))}
               </Menu>
             </Box>
-            <AdbIcon sx={{ display: { xs: "flex" }, mr: 1 }} />
+            {/* <AdbIcon sx={{ display: { xs: "flex" }, mr: 1 }} /> */}
+            <div style={{marginRight:'7px'}}><svg id="logo-35" width="50" height="39" viewBox="0 0 50 39" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M16.4992 2H37.5808L22.0816 24.9729H1L16.4992 2Z" className="ccompli1" fill="#000000" stopColor="#000000"></path> <path d="M17.4224 27.102L11.4192 36H33.5008L49 13.0271H32.7024L23.2064 27.102H17.4224Z" className="ccustom" fill="#fff" stopColor="#fff"></path> </svg></div>
+            
             <Typography
             className="econimizing"
               variant="h5"
@@ -117,7 +120,7 @@ function Navbar(props) {
               // component="a"
               href=""
               sx={{
-                mr: 2,
+                mr: 5,
                 display: { xs: "flex"},
                 flexGrow: 1,
                 fontFamily: "monospace",
@@ -132,7 +135,7 @@ function Navbar(props) {
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {props.pages.map((page) => (
                 <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: "white", display: "block" }}>
-                  <Link style={{ textDecoration: "none", color: "white" }} to={`/${page}`}>
+                  <Link style={{ textDecoration: "none", color: "white",fontWeight:"600" }} to={`/${page}`}>
                     {page}
                   </Link>
                 </Button>
