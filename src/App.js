@@ -14,7 +14,7 @@ import jwt_decode from "jwt-decode";
 import Verifytoken from './components/Api/StoreToken/Verifytoken';
 import { Refresh_token_api } from './components/Api/axios';
 import { Storetoken } from './components/Api/StoreToken/StoreToken';
-
+// import Navbar1 from "./components/navbar/Navbar1";
 import Signup from './components/signup/Signup';
 import Signin from './components/signup/Signin';
 
